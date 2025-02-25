@@ -4,6 +4,16 @@ Below is an **alternative format** for your repository structure that’s more r
 
 ---
 
+
+
+Tailoring Math Examples: 
+
+Test Personalization: Each user “grade level” could equate to a different set of user preferences and complexity requirements.
+Measure Adaptability: See how effectively the model’s chain-of-thought and final answers adjust to users of varying knowledge.
+Demonstrate the Memory Advantage: For instance, a “Grade 3” user might require simpler language, more step-by-step breakdown, while a “Grade 10” user might already know the basics and need more advanced context.
+Showcase Evolving Preferences: Over multiple sessions, the user might “graduate” from simpler tasks to more advanced tasks, and you can see if your memory-augmented system shifts its style accordingly.
+
+
 ## my-math-mCoT-IPO
 - **README.md**  
   - High-level overview of the entire project

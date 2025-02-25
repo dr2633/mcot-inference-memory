@@ -279,6 +279,54 @@ This script demonstrates a sample pipeline with memory-enabled CoT + GRPO-M. Adj
    - Adjust user preference stubs in `scripts/user_preference.py` to see how the model formats outputs with user-specific guidelines.
 
 
+**Repo Structure**
+
+# mCoT-GRPO-IPO Repository Structure
+
+This document outlines the **high-level directory structure** for the **Memory-Guided Chain-of-Thought (mCoT)** project. Each folder and script is briefly described in terms of **purpose** and **intended usage**. Additionally, **key questions** or **next-step clarifications** are presented as bullet points to guide future development.
+
+---
+
+## **1. Directory Overview**
+
+```plaintext
+mCoT-GRPO-IPO/
+├── config/
+│   ├── memory_config.yaml
+│   ├── grpo_config.yaml
+│   └── experiment_config.yaml
+├── data/
+│   ├── sample_memory.json
+│   └── gsm8k_results/
+├── memory/
+│   ├── memory_store.py
+│   └── retrieval_faiss.py
+├── cot/
+│   ├── run_baseline_cot.py
+│   ├── run_memory_cot.py
+│   └── prompts/
+├── rl/
+│   ├── train_rl_memory.py
+│   ├── grpo_utilities.py
+│   └── reward_functions.py
+├── scripts/
+│   ├── evaluate_cot_vs_mcot.py
+│   ├── evaluate_rl.py
+│   └── user_preference.py
+├── tests/
+│   ├── test_memory.py
+│   ├── test_cot.py
+│   ├── test_rl.py
+│   └── test_integration.py
+├── examples/
+│   ├── gsm8k_demo.ipynb
+│   ├── textbook_demo.ipynb
+│   └── ...
+├── README.md
+├── requirements.txt
+└── setup.py
+
+
 References
 
 [Wei et al. (2022)](https://arxiv.org/pdf/2201.11903). Chain-of-Thought Prompting in LLMs.

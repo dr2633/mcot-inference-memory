@@ -1,0 +1,61 @@
+# ===============================
+# General Experiment Settings
+# ===============================
+experiment_name: "memory_cot_gsm8k"  # Unique identifier for this experiment
+run_id: "001"  # Change per experiment run for logging purposes
+seed: 42  # Random seed for reproducibility
+
+# ===============================
+# Model & Tokenizer Configuration
+# ===============================
+model_name: "Qwen/Qwen2-7B-Instruct"  # Model to use for inference
+tokenizer_name: "Qwen/Qwen2-7B-Instruct"  # Tokenizer (defaults to model_name)
+
+device: "cpu"  # Options: "cuda", "cpu", "mps" (for Apple Silicon)
+use_fp16: false  # Enable mixed precision (useful for CUDA runs)
+max_new_tokens: 256  # Max tokens to generate per response
+temperature: 0.7  # Sampling temperature for controlled randomness
+top_p: 0.9  # Nucleus sampling (set to 1.0 for full probability mass)
+do_sample: true  # Enable sampling-based generation
+
+# ===============================
+# Dataset Configuration
+# ===============================
+dataset_name: "openai/gsm8k"
+dataset_split: "train"  # "train" or "test"
+subset_size: 50  # Number of examples to evaluate (set to -1 for full dataset)
+shuffle_data: false  # Whether to shuffle dataset before evaluation
+
+# ===============================
+# Memory-Augmented Retrieval (For run_memory_cot.py)
+# ===============================
+use_memory: true  # Enables memory retrieval (if false, runs as normal CoT)
+memory_config_path: "memory_config.yaml"  # Load FAISS settings from here
+retrieve_top_k: 3  # Number of past interactions to retrieve
+min_memory_similarity: 0.7  # Threshold for valid retrieval
+
+# ===============================
+# Reinforcement Learning (For train_rl_memory.py)
+# ===============================
+use_rl_training: false  # Set true to enable GRPO fine-tuning
+grpo_config_path: "grpo_config.yaml"  # Config file for RL training
+rl_epochs: 3  # Number of epochs for GRPO training
+batch_size: 8  # RL batch size
+reward_strategy: "correctness_and_efficiency"  # Options: "correctness_only", "formatting_consistency"
+
+# ===============================
+# Logging & Debugging
+# ===============================
+log_dir: "logs/"
+output_file: "experiment_results.json"
+save_outputs: true  # Whether to save model generations
+enable_verbose_logging: true  # Print additional logs for debugging
+print_retrieved_memory: true  # Log retrieved memory chunks during inference
+
+# ===============================
+# Evaluation Metrics
+# ===============================
+compute_accuracy: true  # Check if the model’s final answer matches ground truth
+track_token_usage: true  # Measure input & output token counts
+track_fluency_score: false  # Future: NLP-based fluency evaluation
+save_comparison_logs: true  # Store side-by-side outputs for CoT vs. mCoT

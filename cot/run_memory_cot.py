@@ -1,6 +1,7 @@
 # `run_memory_cot.py`
 #!/usr/bin/env python
 # coding: utf-8
+# derek.rosenzweig1@gmail.com
 
 """
 run_memory_cot.py

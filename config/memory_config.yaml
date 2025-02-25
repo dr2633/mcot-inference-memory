@@ -1,0 +1,29 @@
+# General Settings
+memory_store_path: "faiss_index"  # Path to store FAISS index
+metadata_store_path: "metadata.pkl"  # Path to store metadata for retrieval
+
+# Embedding Model Settings
+embedding_model: "sentence-transformers/all-MiniLM-L6-v2"  # Model for text embeddings
+embedding_dimension: 384  # Must match the embedding model output size
+
+# FAISS Index Settings
+faiss_index_type: "IndexFlatL2"  # Alternative: "IndexHNSW", "IndexIVFFlat" for large datasets
+use_gpu: false  # Set to true if using FAISS-GPU (not recommended for Mac)
+
+# Retrieval Settings
+top_k: 3  # Number of nearest neighbors to return
+similarity_threshold: 0.7  # Minimum cosine similarity for valid memory retrieval
+
+# Memory Storage Rules
+enable_user_specific_memory: true  # If true, retrieves only memory related to the specific user_id
+allow_dynamic_memory_updates: true  # If true, new reasoning steps are automatically stored
+
+# Memory Decay (Optional)
+memory_decay_factor: 0.95  # Reduce weight of older memories to avoid overfitting to past interactions
+
+# Logging Settings
+enable_verbose_logging: true  # Prints detailed retrieval/debugging info
+log_retrieved_memories: true  # Store retrieved memory alongside results in run_memory_cot.py
+
+# Backup & Persistence
+auto_save_interval: 50  # Save FAISS index & metadata every N additions

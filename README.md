@@ -281,10 +281,19 @@ This script demonstrates a sample pipeline with memory-enabled CoT + GRPO-M. Adj
 
 References
 
-Wei et al. (2022). Chain-of-Thought Prompting in LLMs.
+[Wei et al. (2022)](https://arxiv.org/pdf/2201.11903). Chain-of-Thought Prompting in LLMs.
+ 
 Wang et al. (2022). Self-Consistency in Chain-of-Thought Reasoning.
+ 
 Zelikman et al. (2022). STaR: Self-Taught Reasoner.
+ 
 Schulman et al. (2017). Proximal Policy Optimization.
-DeepSeek R1 & TinyZero: GitHub: Jiayi-Pan/TinyZero.
-DeepSeekMath (Shao et al., 2024) introducing GRPO.
-Sasha Rush’s Repository & Noam Brown Lecture: Additional context on RL for language models.
+ 
+DeepSeek R1 & TinyZero: GitHub:
+Jiayi-Pan/TinyZero.
+ 
+Shao et al., 2024: DeepSeekMath introducing GRPO.
+ 
+Sasha Rush’s Repository 
+
+GSM8K

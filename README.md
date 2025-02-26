@@ -132,7 +132,8 @@ In **standard GRPO**, we sample outputs and compute rewards. Here, we incorporat
    $$
    \pi_\theta(o \mid q, M_u) 
    = \frac{\exp \bigl(A(o, q, M_u)\bigr)}{\sum_{o' \in O} \exp \bigl(A(o', q, M_u)\bigr)}
-   $$
+
+ $$
    
    where  
    $$
@@ -144,7 +145,7 @@ In **standard GRPO**, we sample outputs and compute rewards. Here, we incorporat
    - $\lambda$: scales the memory contribution
  
 
-2. **Memory Retrieval**  
+3. **Memory Retrieval**  
 
    $$
    M_u = R(q, H_u) = \arg\max_{M' \in H_u} \Phi(q, M')
@@ -153,7 +154,7 @@ In **standard GRPO**, we sample outputs and compute rewards. Here, we incorporat
    where $\Phi$ is a semantic similarity or attention-based function, and $H_u$ is the user’s historical memory bank.
  
 
-3. **Inference Preference Optimization Loss Function**  
+4. **Inference Preference Optimization Loss Function**  
 
    $$
    J_{\text{GRPO-M}}(\theta) = \mathbb{E}\Bigl[\sum_{t=1}^{|o|} \min \bigl(r_t(\theta), \,\text{clip}\bigl(r_t(\theta), 1-\epsilon, 1+\epsilon\bigr)\bigr)\Bigr]

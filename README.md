@@ -129,21 +129,18 @@ In **standard GRPO**, we sample outputs and compute rewards. Here, we incorporat
 
 1. **Memory-Augmented Policy Distribution**  
 
-   $$
-   \pi_\theta(o \mid q, M_u) = \frac{\exp \bigl(A(o, q, M_u)\bigr)}{\sum_{o' \in O} \exp \bigl(A(o', q, M_u)\bigr)}
-   $$
-
-   π_θ(o | q, M_u) = exp(A(o, q, M_u)) / ∑_{o' ∈ O} exp(A(o', q, M_u))
-
+$$
+\pi_\theta(o \mid q, M_u) = \frac{\exp \bigl(A(o, q, M_u)\bigr)}{\sum_{o' \in O} \exp \bigl(A(o', q, M_u)\bigr)}
+$$
 
    where  
-   $$
-   A(o, q, M_u) = z(o, q) + \lambda \cdot S(o, M_u).
-   $$
+$$
+A(o, q, M_u) = z(o, q) + \lambda \cdot S(o, M_u).
+$$
    
-   - $z(o, q)$: z-score normalized reward  
-   - $S(o, M_u)$: alignment score with user-specific memory  
-   - $\lambda$: scales the memory contribution
+- $z(o, q)$: z-score normalized reward  
+- $S(o, M_u)$: alignment score with user-specific memory  
+- $\lambda$: scales the memory contribution
  
 
 3. **Memory Retrieval**  

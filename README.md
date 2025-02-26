@@ -130,10 +130,8 @@ In **standard GRPO**, we sample outputs and compute rewards. Here, we incorporat
 1. **Memory-Augmented Policy Distribution**  
 
    $$
-   \pi_\theta(o \mid q, M_u) 
-   = \frac{\exp \bigl(A(o, q, M_u)\bigr)}{\sum_{o' \in O} \exp \bigl(A(o', q, M_u)\bigr)}
-
- $$
+   \pi_\theta(o \mid q, M_u) = \frac{\exp \bigl(A(o, q, M_u)\bigr)}{\sum_{o' \in O} \exp \bigl(A(o', q, M_u)\bigr)}
+   $$
    
    where  
    $$

@@ -2,6 +2,7 @@
 
 ## Introduction
 
+### The Limits of CoT in Personalizing Reasoning Trajectories
 Chain-of-Thought (CoT) prompting enables models to break down complex problems into intermediate steps, improving interpretability and reasoning depth. However, CoT lacks personalization, treating every inference independently without recalling prior user interactions or refining responses based on historical context.
 
 ### Limitations of Task-Based Benchmarks in Evaluating Long-Term User Interaction

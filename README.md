@@ -102,22 +102,3 @@ Before deploying, ensure all tests pass. This runs **unit and integration tests*
 ```python
 pytest tests/
   ```
-
----
-
-## Configurations
-Modify these config files for customization:
-- **Memory Configuration** → Adjust FAISS retrieval parameters.
-- **GRPO Configuration** → Modify reinforcement learning settings.
-- **User Preferences** → Customize reasoning styles.
-
----
-
-## Next Steps
-1. **Run model training** to refine reasoning through **GRPO fine-tuning**.  
-2. **Experiment with user preferences** to personalize model outputs.  
-3. **Adjust FAISS retrieval and re-run evaluations**.  
-4. **Fine-tune GRPO hyperparameters to improve learning efficiency**.  
-
----
-

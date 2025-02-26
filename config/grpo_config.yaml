@@ -1,0 +1,56 @@
+# ===============================
+# General GRPO Training Settings
+# ===============================
+use_grpo: true  # Enable GRPO-based reinforcement learning
+output_dir: "grpo_checkpoints/"  # Where to save trained models
+logging_steps: 10  # Frequency of logging updates
+
+# ===============================
+# Model & Training Configuration
+# ===============================
+model_name: "Qwen/Qwen2-7B-Instruct"  # Model to fine-tune
+tokenizer_name: "Qwen/Qwen2-7B-Instruct"  # Tokenizer (defaults to model_name)
+
+device: "cuda"  # Options: "cuda", "cpu", "mps"
+use_fp16: true  # Mixed precision training for faster convergence
+gradient_accumulation_steps: 4  # Helps with low-memory training
+num_train_epochs: 3  # Number of epochs
+batch_size: 8  # Training batch size
+learning_rate: 5e-6  # Fine-tuning LR (adjust based on performance)
+weight_decay: 0.01  # Regularization to prevent overfitting
+
+# ===============================
+# Reward Function Configuration
+# ===============================
+reward_strategy: "correctness_and_efficiency"  # Options: "correctness_only", "formatting_consistency"
+
+reward_weights:
+  correctness: 1.0  # Reward for correct final answers
+  efficiency: 0.5  # Reward for reducing unnecessary token usage
+  formatting: 0.3  # Reward for adhering to structured CoT formats
+
+normalize_rewards: true  # Scale rewards to avoid extreme values
+clip_reward_range: [-1, 1]  # Prevent large rewards from destabilizing training
+
+# ===============================
+# Memory Integration (For mCoT Training)
+# ===============================
+use_memory_retrieval: true  # Enables memory retrieval in RL training
+memory_config_path: "memory_config.yaml"  # Load FAISS settings
+retrieve_top_k: 3  # Number of relevant past CoT examples to retrieve
+memory_decay_factor: 0.95  # Decay for older memories (1.0 = no decay)
+
+# ===============================
+# Evaluation & Logging
+# ===============================
+eval_steps: 50  # Evaluate model every N steps
+save_steps: 100  # Save checkpoint every N steps
+eval_subset_size: 100  # Number of evaluation samples
+log_reward_distribution: true  # Log reward values across training
+
+# ===============================
+# Checkpointing & Resume Training
+# ===============================
+resume_from_checkpoint: false  # Continue training from previous checkpoint?
+checkpoint_path: "grpo_checkpoints/latest/"  # Path to checkpoint
+

@@ -1,5 +1,6 @@
 import faiss
 import os
+import json
 import pickle
 import numpy as np
 import logging
@@ -8,41 +9,46 @@ from sentence_transformers import SentenceTransformer
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-
 class FAISSRetriever:
     """
     A FAISS-based retrieval system for memory-augmented Chain-of-Thought (mCoT).
     Stores reasoning steps as dense embeddings and retrieves top-K relevant memories.
     """
 
-    def __init__(self, index_path="faiss_index", metadata_path="metadata.pkl",
-                 embedding_model="sentence-transformers/all-MiniLM-L12-v2", dim=384, use_gpu=False):
+    def __init__(self, index_path="memory/faiss_index", metadata_path="memory/metadata.pkl",
+                 json_memory_store="memory/memory_store.json",
+                 embedding_model="sentence-transformers/all-MiniLM-L12-v2",
+                 dim=384, use_gpu=False, use_pickle=True):
         """
         Initializes the FAISS index, embedding model, and metadata storage.
 
         Args:
             index_path (str): Path to store FAISS index.
-            metadata_path (str): Path to store memory metadata (raw text entries).
+            metadata_path (str): Path to store memory metadata (Pickle format).
+            json_memory_store (str): Path to store memory metadata (JSON format).
             embedding_model (str): Sentence Transformer model for text embeddings.
             dim (int): Dimension of embeddings (should match model output).
             use_gpu (bool): Whether to use FAISS-GPU (requires CUDA).
+            use_pickle (bool): Whether to store metadata in Pickle (faster) or JSON (readable).
         """
         self.index_path = index_path
         self.metadata_path = metadata_path
+        self.json_memory_store = json_memory_store
         self.use_gpu = use_gpu
+        self.use_pickle = use_pickle
         self.dim = dim
 
         # Initialize the SentenceTransformer with device selection
         device = "cuda" if use_gpu else "cpu"
         self.embedding_model = SentenceTransformer(embedding_model, device=device)
 
-        # Load or create FAISS index using inner product (IP) for cosine similarity.
+        # Load or create FAISS index using Inner Product (IP) for cosine similarity.
         if os.path.exists(self.index_path):
             logging.info(f"Loading FAISS index from {self.index_path}...")
             self.index = faiss.read_index(self.index_path)
         else:
             logging.info("Creating new FAISS index using inner product (cosine similarity)...")
-            self.index = faiss.IndexFlatIP(dim)  # Use inner product; works for normalized embeddings
+            self.index = faiss.IndexFlatIP(dim)  # Inner Product for cosine similarity
             if self.use_gpu:
                 self.index = faiss.index_cpu_to_all_gpus(self.index)
 
@@ -51,12 +57,19 @@ class FAISSRetriever:
 
     def _load_metadata(self):
         """Loads stored metadata (reasoning steps) if available."""
-        if os.path.exists(self.metadata_path):
+        if self.use_pickle and os.path.exists(self.metadata_path):
             try:
                 with open(self.metadata_path, "rb") as f:
                     return pickle.load(f)
             except Exception as e:
-                logging.error(f"Failed to load metadata: {e}")
+                logging.error(f"Failed to load metadata from Pickle: {e}")
+                return {}
+        elif not self.use_pickle and os.path.exists(self.json_memory_store):
+            try:
+                with open(self.json_memory_store, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                logging.error(f"Failed to load metadata from JSON: {e}")
                 return {}
         return {}
 
@@ -108,11 +121,9 @@ class FAISSRetriever:
         retrieved_memories = []
         for i in range(len(indices[0])):
             idx = indices[0][i]
-            # With an IP index and normalized embeddings, the distance returned is the cosine similarity.
-            similarity = distances[0][i]
+            similarity = distances[0][i]  # Inner Product (IP) acts as cosine similarity for normalized embeddings
             if idx in self.metadata and similarity >= min_similarity:
                 memory_entry = self.metadata[idx]
-                # If user-specific retrieval is enabled, check user_id match
                 if user_id and memory_entry["user_id"] != user_id:
                     continue
                 retrieved_memories.append({
@@ -124,14 +135,17 @@ class FAISSRetriever:
 
     def save(self) -> None:
         """Saves FAISS index and metadata for persistence."""
-        # If using GPU, convert index back to CPU before saving.
         if self.use_gpu:
             self.index = faiss.index_gpu_to_cpu(self.index)
         try:
             faiss.write_index(self.index, self.index_path)
-            with open(self.metadata_path, "wb") as f:
-                pickle.dump(self.metadata, f)
-            logging.info(f"Saved FAISS index to {self.index_path} and metadata to {self.metadata_path}.")
+            if self.use_pickle:
+                with open(self.metadata_path, "wb") as f:
+                    pickle.dump(self.metadata, f)
+            else:
+                with open(self.json_memory_store, "w", encoding="utf-8") as f:
+                    json.dump(self.metadata, f, indent=2)
+            logging.info(f"Saved FAISS index and metadata.")
         except Exception as e:
             logging.error(f"Error saving index or metadata: {e}")
 
@@ -143,15 +157,16 @@ class FAISSRetriever:
         self.metadata = {}
         logging.info("Memory store reset. Previous data cleared.")
 
-
 if __name__ == "__main__":
-    # Example usage:
     retriever = FAISSRetriever(use_gpu=False)
+
+    # Example: Add memory
     retriever.add_memory("user1", "This is a sample reasoning step for user1.")
     retriever.add_memory("user2", "Another reasoning step from user2.")
 
-    # Retrieve memories for user1 that are relevant to the query.
+    # Example: Retrieve memory for user1
     results = retriever.retrieve_memory("sample reasoning", user_id="user1")
     logging.info("Retrieved memories: %s", results)
 
+    # Save the FAISS index
     retriever.save()

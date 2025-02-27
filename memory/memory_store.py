@@ -18,8 +18,6 @@ import numpy as np
 import pickle
 from typing import List, Dict, Any, Union
 
-# Example embedding approach (e.g., SentenceTransformers)
-# If you prefer a Hugging Face model with Autotokenizer & AutoModel, adapt accordingly.
 try:
     from sentence_transformers import SentenceTransformer
 except ImportError:

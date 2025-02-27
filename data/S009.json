@@ -1,0 +1,50 @@
+{
+  "student_id": "S009",
+  "name": "Jordan Williams",
+  "grade_level": "9th grade",
+  "math_background": {
+    "strengths": [
+      "Proficient in algebraic manipulation and solving linear equations",
+      "Understands ratios, proportions, and percentages well",
+      "Able to apply mathematical concepts to real-world scenarios",
+      "Comfortable working with graphical representations of functions"
+    ],
+    "challenges": [
+      "Struggles with abstract reasoning in higher-level algebraic problems",
+      "Difficulty recognizing problem structures that require quadratic or exponential reasoning",
+      "Needs improvement in precision when setting up word problem equations",
+      "Tends to second-guess answers, leading to slower problem-solving times"
+    ]
+  },
+  "cognitive_style": {
+    "learning_preferences": [
+      "Prefers conceptual explanations before formulas",
+      "Learns well from worked examples and step-by-step breakdowns",
+      "Finds peer discussions helpful for reinforcing problem-solving methods"
+    ],
+    "problem_solving_approach": [
+      "Breaks problems into steps but sometimes skips verification",
+      "Prefers checking solutions against multiple approaches when unsure",
+      "Can struggle with test-taking strategies under time constraints"
+    ]
+  },
+  "engagement_factors": {
+    "motivators": [
+      "Interested in real-world applications, particularly in science and technology",
+      "Enjoys interactive problem-solving rather than rote practice",
+      "Responds well to goal-setting and challenge-based learning"
+    ],
+    "demotivators": [
+      "Frustrated by problems that seem disconnected from practical use",
+      "Loses interest when explanations feel overly procedural without reasoning",
+      "Dislikes excessive repetition without variation in problem types"
+    ]
+  },
+  "teacher_feedback": {
+    "notes": [
+      "Jordan benefits from applying algebra in real-world contexts like physics or finance.",
+      "Encouraging self-explanation strategies helps Jordan solidify understanding.",
+      "Using visual representations (graphs, tables) supports Jordan’s comprehension of abstract concepts."
+    ]
+  }
+}

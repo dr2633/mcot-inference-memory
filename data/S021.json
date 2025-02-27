@@ -1,0 +1,48 @@
+{
+  "student_id": "S021",
+  "name": "Emily Clark",
+  "grade_level": "Undergraduate",
+  "math_background": {
+    "strengths": [
+      "Proficient in calculus, linear algebra, and probability theory",
+      "Understands mathematical modeling and optimization techniques",
+      "Able to generalize problem-solving techniques across domains"
+    ],
+    "challenges": [
+      "Occasionally struggles with abstract mathematical proofs",
+      "Needs improvement in applying probability to real-world scenarios",
+      "Prefers structured approaches over heuristic-based problem solving"
+    ]
+  },
+  "cognitive_style": {
+    "learning_preferences": [
+      "Prefers theoretical explanations before application",
+      "Learns well through worked-out derivations and proofs",
+      "Finds research papers and technical articles useful"
+    ],
+    "problem_solving_approach": [
+      "Breaks problems into known frameworks before solving",
+      "Verifies solutions using multiple methods when possible",
+      "Prefers rigorous explanations over intuitive reasoning"
+    ]
+  },
+  "engagement_factors": {
+    "motivators": [
+      "Interested in applications of mathematics in AI and physics",
+      "Enjoys research-oriented challenges and open-ended problems",
+      "Likes mathematically elegant solutions"
+    ],
+    "demotivators": [
+      "Dislikes rote memorization without conceptual understanding",
+      "Frustrated by problems that lack clear definitions or constraints",
+      "Prefers mathematical rigor over approximations when possible"
+    ]
+  },
+  "teacher_feedback": {
+    "notes": [
+      "Emily benefits from engaging with theoretical and applied math problems.",
+      "Encouraging independent exploration in mathematical proofs is useful.",
+      "Applying math concepts to real-world problems enhances understanding."
+    ]
+  }
+}

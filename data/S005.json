@@ -1,0 +1,51 @@
+{
+  "student_id": "S005",
+  "name": "Alex Johnson",
+  "grade_level": "5th grade",
+  "math_background": {
+    "strengths": [
+      "Basic arithmetic operations (addition, subtraction, multiplication, division)",
+      "Understanding of place value and number sense",
+      "Ability to solve single-step word problems with familiar contexts",
+      "Comfortable with visualizing problems using diagrams"
+    ],
+    "challenges": [
+      "Struggles with multi-step word problems requiring multiple operations",
+      "Difficulty in identifying relevant information in word problems",
+      "Tends to rush calculations, leading to minor computational errors",
+      "Limited familiarity with fractions and decimals in applied contexts"
+    ]
+  },
+  "cognitive_style": {
+    "learning_preferences": [
+      "Prefers step-by-step breakdowns of problems",
+      "Benefits from worked examples before independent practice",
+      "Understands better when problems are framed in real-life scenarios (e.g., shopping, cooking)"
+    ],
+    "problem_solving_approach": [
+      "Attempts to break problems into smaller parts",
+      "Sometimes misinterprets problem wording, leading to incorrect operations",
+      "Needs prompting to check work systematically"
+    ]
+  },
+  "engagement_factors": {
+    "motivators": [
+      "Enjoys gamified learning and challenges",
+      "Likes explanations with visual aids (diagrams, number lines)",
+      "Prefers interactive discussions over passive reading"
+    ],
+    "demotivators": [
+      "Frustrated by lengthy or complex instructions",
+      "Dislikes abstract problems without clear real-world relevance",
+      "Avoids rechecking answers unless prompted"
+    ]
+  },
+  "teacher_feedback": {
+    "notes": [
+      "Alex benefits from scaffolding strategies when solving multi-step problems.",
+      "Providing guiding questions helps Alex focus on relevant details in word problems.",
+      "Encouraging Alex to verbalize thought processes improves problem comprehension."
+    ]
+  }
+}
+

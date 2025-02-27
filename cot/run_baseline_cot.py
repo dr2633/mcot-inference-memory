@@ -100,7 +100,6 @@ def generate_cot_and_answer(
         output_ids = model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
-            temperature=temperature,
             do_sample=True
         )
 

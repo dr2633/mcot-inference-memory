@@ -1,4 +1,4 @@
-## Memory-Guided Chain-of-Thought (mCoT) with GRPO for Inference Preference Optimization (IPO)
+## Inference Preference Optimization (IPO): Augmenting GRPO with Memory
 
 This repository explores Memory-Guided Chain-of-Thought (mCoT) reasoning using Group Relative Policy Optimization (GRPO) to optimize inference-time reasoning with user-specific memory.
 
@@ -18,8 +18,8 @@ This repository extends standard Chain-of-Thought (CoT) reasoning by integrating
 This section guides you through setting up the repository and running key scripts.
 
 ```python
-git clone https://github.com/dr2633/mCoT-GRPO-IPO
-cd mCoT-GRPO-IPO
+git clone https://github.com/dr2633/mcot-inference-memory
+cd mcot-inference-memory
 ```
 
 ### Install Dependencies

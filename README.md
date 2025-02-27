@@ -1,6 +1,6 @@
 ## Inference Preference Optimization (IPO): Augmenting GRPO with Memory
 
-This repository explores Memory-Guided Chain-of-Thought (mCoT) reasoning using Group Relative Policy Optimization (GRPO) to optimize inference-time reasoning with user-specific memory.
+This repository explores Memory-Guided Chain-of-Thought (mCoT) reasoning using Group Relative Policy Optimization (GRPO) to optimize inference-time reasoning with user-specific and user-specified memory retrieval with FAISS.
 
 ---
 

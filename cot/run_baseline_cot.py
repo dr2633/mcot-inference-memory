@@ -11,7 +11,9 @@ Collects token usage statistics and basic accuracy metrics.
 
 import argparse
 import torch
-import math
+import os
+import json
+import re
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -41,7 +43,7 @@ def parse_args():
     parser.add_argument(
         "--temperature",
         type=float,
-        default=0.7,
+        default=0.3,
         help="Sampling temperature for generation."
     )
     parser.add_argument(
@@ -62,22 +64,24 @@ def parse_args():
         help="Evaluate on the entire GSM8K dataset instead of subset_size."
     )
     parser.add_argument(
-        "--output_file",
+        "--output_dir",
         type=str,
-        default="baseline_cot_results.json",
-        help="Path to store evaluation results in JSON format."
+        default=os.path.join(os.getcwd(), "data/qwen"),  # Save relative to the script
+        help="Directory to store evaluation JSON outputs."
     )
+
     return parser.parse_args()
+
 
 # ----------------------------------------------
 # Chain-of-Thought Prompt Construction
 # ----------------------------------------------
 def build_cot_prompt(question: str, prefix: str) -> str:
-    """
-    Creates a simple CoT prompt by appending a reasoning prefix
-    and instructing the model to produce step-by-step reasoning.
-    """
-    return f"Question: {question}\n{prefix}\n"
+    return (
+        f"Question: {question}\n"
+        f"{prefix}\n"
+        "Show all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n"
+    )
 
 # ----------------------------------------------
 # Inference & Logging Logic
@@ -90,33 +94,37 @@ def generate_cot_and_answer(
     temperature: float,
     device: str
 ):
-    """
-    Generates a chain-of-thought response + final answer using the model.
-    Splits the chain-of-thought from the final answer by searching for
-    a delimiter (if desired), or just returns the entire generation.
-    """
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
     with torch.no_grad():
         output_ids = model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
-            do_sample=True
+            do_sample=False,
+            temperature=temperature,
+            eos_token_id=tokenizer.eos_token_id
         )
-
     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
     return output_text
 
 def extract_final_answer(generated_text: str) -> str:
-    """
-    A naive approach to extract the final answer from the chain-of-thought.
-    Here we assume the last line or a recognized pattern 'Answer:'.
-    Modify as needed.
-    """
-    # If there's a marker like 'Answer:' or 'Final Answer:', parse it
-    if "Answer:" in generated_text:
-        return generated_text.split("Answer:")[-1].strip()
-    # fallback to entire text if no distinct answer marker
-    return generated_text.strip()
+    print(f"[DEBUG] Raw Model Output:\n{generated_text}\n", flush=True)
+
+    # First, check for explicit '#### <integer>' format
+    match = re.search(r'####\s*(\d+)', generated_text)
+    if match:
+        return match.group(1)
+
+    # If not found, look for the last number in the output
+    numbers = re.findall(r"[-+]?\d*\.\d+|\d+", generated_text)
+    if numbers:
+        print(f"[DEBUG] Extracted Numbers: {numbers}", flush=True)
+        return numbers[-1]  # Take the last number as the final answer
+
+    return "N/A"
+
+def get_ground_truth_answer(answer_text: str) -> str:
+    match = re.search(r'####\s*(\d+)', answer_text)
+    return match.group(1) if match else "N/A"
 
 # ----------------------------------------------
 # Main Script
@@ -124,35 +132,26 @@ def extract_final_answer(generated_text: str) -> str:
 def main():
     args = parse_args()
 
-    # 1. Load model & tokenizer
     print(f"Loading model {args.model_name} ...")
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     model.to(args.device)
 
-    # 2. Load GSM8K dataset
     print("Loading GSM8K dataset...")
     ds_full = load_dataset("openai/gsm8k", "main")
-    ds = ds_full["train"]  # or ds_full["test"], depending on preference
+    ds = ds_full["train"]
 
     if not args.do_full_dataset:
         ds = ds.select(range(min(args.subset_size, len(ds))))
 
     print(f"Number of samples to evaluate: {len(ds)}")
-
-    # 3. Evaluation placeholders
     results = []
-    total_correct = 0
+    os.makedirs(args.output_dir, exist_ok=True)
 
-    # 4. Iterate over dataset
     for idx, sample in enumerate(ds):
         question = sample["question"]
-        gold_solution = sample["answer"]  # The ground-truth final numeric/string answer
-
-        # Build a chain-of-thought prompt
+        gold_solution = get_ground_truth_answer(sample["answer"].strip().lower())
         prompt = build_cot_prompt(question, args.prompt_prefix)
-
-        # Generate chain-of-thought + answer
         generated_text = generate_cot_and_answer(
             model=model,
             tokenizer=tokenizer,
@@ -161,27 +160,25 @@ def main():
             temperature=args.temperature,
             device=args.device
         )
+        predicted_answer = extract_final_answer(generated_text).strip().lower()
+        # Normalize answers by stripping spaces, newlines, and punctuation
+        normalized_predicted = re.sub(r"[^\d]", "", predicted_answer.strip())  # Keep only numbers
+        normalized_gold = re.sub(r"[^\d]", "", gold_solution.strip())  # Keep only numbers
 
-        # Extract final answer
-        predicted_answer = extract_final_answer(generated_text)
+        is_correct = (normalized_predicted == normalized_gold)
 
-        # Measure token usage
-        # (1) Prompt tokens
-        prompt_tokens = tokenizer(prompt)["input_ids"]
-        # (2) Full output tokens
-        output_tokens = tokenizer(generated_text)["input_ids"]
-        # Optional: If you want to measure specifically the chain-of-thought portion,
-        # you'd need a more advanced parsing strategy or a delimiter approach.
+        # Print Model Output for Debugging
+        print(f"\n[DEBUG] Sample {idx + 1}/{len(ds)}", flush=True)
+        print(f"Question: {question}", flush=True)
+        print(f"Prompt Used:\n{prompt}", flush=True)
+        print(f"Generated Output:\n{generated_text}", flush=True)
+        print(f"Extracted Answer: {predicted_answer}", flush=True)
+        print(f"Expected Answer: {gold_solution}", flush=True)
+        print(f"Correct?: {is_correct}", flush=True)
+        print("-" * 80, flush=True)
 
-        # Check correctness
-        # Basic numeric check if gold_solution is typically a string representing a number:
-        # You may need a more robust compare function for complex answers
-        is_correct = (predicted_answer.strip() == gold_solution.strip())
-
-        if is_correct:
-            total_correct += 1
-
-        # Log the results
+        # Save per-sample JSON
+        os.makedirs(args.output_dir, exist_ok=True)
         result_entry = {
             "index": idx,
             "question": question,
@@ -190,36 +187,19 @@ def main():
             "generated_text": generated_text,
             "predicted_answer": predicted_answer,
             "is_correct": is_correct,
-            "prompt_length": len(prompt_tokens),
-            "output_length": len(output_tokens),
         }
         results.append(result_entry)
 
-        # Print live updates every few samples
-        if (idx + 1) % 5 == 0:
-            print(f"[{idx+1}/{len(ds)}] Current accuracy: {total_correct/(idx+1):.2%}")
+        with open(os.path.join(args.output_dir, f"sample_{idx}.json"), "w", encoding="utf-8") as f:
+            json.dump(result_entry, f, indent=2)
 
-    # 5. Compute final metrics
-    overall_accuracy = total_correct / len(ds)
-    avg_prompt_length = sum(r["prompt_length"] for r in results) / len(results)
-    avg_output_length = sum(r["output_length"] for r in results) / len(results)
-
+    overall_accuracy = sum(r["is_correct"] for r in results) / len(results)
     print("\nEvaluation Complete.")
     print(f"Accuracy: {overall_accuracy:.2%}")
-    print(f"Average Prompt Token Length: {avg_prompt_length:.2f}")
-    print(f"Average Output Token Length: {avg_output_length:.2f}")
 
-    # 6. Save results to a JSON file
-    import json
-    with open(args.output_file, "w", encoding="utf-8") as f:
-        json.dump({
-            "overall_accuracy": overall_accuracy,
-            "avg_prompt_length": avg_prompt_length,
-            "avg_output_length": avg_output_length,
-            "results": results
-        }, f, indent=2)
-    print(f"Results saved to {args.output_file}")
-
+    with open(os.path.join(args.output_dir, "baseline_cot_results.json"), "w", encoding="utf-8") as f:
+        json.dump({"overall_accuracy": overall_accuracy, "results": results}, f, indent=2)
+    print(f"Results saved to {args.output_dir}/baseline_cot_results.json")
 
 if __name__ == "__main__":
     main()

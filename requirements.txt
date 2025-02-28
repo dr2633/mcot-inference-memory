@@ -1,5 +1,5 @@
 # Core Deep Learning Frameworks
-torch>=2.0.0
+torch>=2.0.0  # Use GPU-optimized installation
 transformers>=4.36.0
 accelerate>=0.22.0
 
@@ -8,15 +8,16 @@ datasets>=2.14.0
 tqdm>=4.66.0  # For progress tracking
 
 # Tokenization and Preprocessing
-tiktoken>=0.4.0  # Required for Qwen tokenization
 einops>=0.6.0  # Required for Qwen model operations
-transformers_stream_generator>=0.1.0  # Required for Qwen inference
+transformers_stream_generator==0.0.5  # Required for Qwen inference
 
 # Memory Retrieval (FAISS for run_memory_cot.py)
-faiss-cpu>=1.7.4  # For efficient vector retrieval
+faiss-cpu>=1.7.4; sys_platform != "linux"
+faiss-gpu>=1.7.4; sys_platform == "linux"
 
 # Reinforcement Learning (For train_rl_memory.py)
-trl>=0.7.9  # Hugging Face TRL for GRPO/PPO optimization
+trl>=0.7.9
+bitsandbytes>=0.39.0  # Required for quantized training
 
 # Miscellaneous Utilities
 numpy>=1.23.0

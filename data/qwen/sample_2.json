@@ -1,0 +1,9 @@
+{
+  "index": 2,
+  "question": "Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?",
+  "gold_solution": "5",
+  "prompt": "Question: Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Betty is saving money for a new wallet which costs $100. Betty has only half of the money she needs. Her parents decided to give her $15 for that purpose, and her grandparents twice as much as her parents. How much more money does Betty need to buy the wallet?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Determine the amount of money Betty has saved so far.\nBetty has half of the money she needs, which means she has 100 / 2 = 50 dollars saved.\n\nStep 2: Calculate the amount of money Betty's parents gave her.\nBetty's parents gave her $15.\n\nStep 3: Calculate the amount of money Betty's grandparents gave her.\nBetty's grandparents gave her twice as much as her parents, which means they gave her 2 * 15 = 30 dollars.\n\nStep 4: Calculate the total amount of money Betty has so far.\nBetty has 50 + 15 + 30 = 95 dollars saved.\n\nStep 5: Calculate the amount of money Betty still needs to buy the wallet.\nBetty still needs 100 - 95 = 5 dollars to buy the wallet.\n\nFinal answer: #### 5.",
+  "predicted_answer": "5",
+  "is_correct": true
+}

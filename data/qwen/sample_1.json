@@ -1,0 +1,9 @@
+{
+  "index": 1,
+  "question": "Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?",
+  "gold_solution": "10",
+  "prompt": "Question: Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Determine the hourly rate of babysitting.\nThe problem states that Weng earns $12 an hour for babysitting.\n\nStep 2: Calculate the number of hours worked.\nThe problem states that Weng did 50 minutes of babysitting. To convert minutes to hours, we divide the minutes by 60. 50 minutes / 60 minutes/hour = 0.83 hours.\n\nStep 3: Calculate the total earnings.\nNow that we know Weng worked 0.83 hours, we can multiply her hourly rate by the number of hours worked to find her total earnings. $12/hour * 0.83 hours = $9.96.\n\nFinal answer: $9.96.",
+  "predicted_answer": "9.96",
+  "is_correct": false
+}

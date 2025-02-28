@@ -1,0 +1,9 @@
+{
+  "index": 24,
+  "question": "Mary does her grocery shopping on Saturday. She does her shopping only at a specific store where she is allowed a credit of $100, which must be paid in full before her next shopping trip. That week she spent the full credit limit and paid $15 of it on Tuesday and $23 of it on Thursday. How much credit will Mary need to pay before her next shopping trip?",
+  "gold_solution": "62",
+  "prompt": "Question: Mary does her grocery shopping on Saturday. She does her shopping only at a specific store where she is allowed a credit of $100, which must be paid in full before her next shopping trip. That week she spent the full credit limit and paid $15 of it on Tuesday and $23 of it on Thursday. How much credit will Mary need to pay before her next shopping trip?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Mary does her grocery shopping on Saturday. She does her shopping only at a specific store where she is allowed a credit of $100, which must be paid in full before her next shopping trip. That week she spent the full credit limit and paid $15 of it on Tuesday and $23 of it on Thursday. How much credit will Mary need to pay before her next shopping trip?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nTo solve this problem, we need to find out how much credit Mary has left to pay before her next shopping trip. We know that she spent the full credit limit of $100 and paid $15 on Tuesday and $23 on Thursday. So, we can subtract these amounts from the total credit limit to find out how much credit she still needs to pay. \n\n$100 - $15 - $23 = $62\n\nTherefore, Mary needs to pay $62 before her next shopping trip.",
+  "predicted_answer": "62",
+  "is_correct": true
+}

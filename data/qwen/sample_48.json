@@ -1,0 +1,9 @@
+{
+  "index": 48,
+  "question": "Sam memorized six more digits of pi than Carlos memorized. Mina memorized six times as many digits of pi as Carlos memorized. If Mina memorized 24 digits of pi, how many digits did Sam memorize?",
+  "gold_solution": "10",
+  "prompt": "Question: Sam memorized six more digits of pi than Carlos memorized. Mina memorized six times as many digits of pi as Carlos memorized. If Mina memorized 24 digits of pi, how many digits did Sam memorize?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Sam memorized six more digits of pi than Carlos memorized. Mina memorized six times as many digits of pi as Carlos memorized. If Mina memorized 24 digits of pi, how many digits did Sam memorize?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Let's define the variables we need for this problem. Let's use 'C' to represent the number of digits Carlos memorized, and 'S' to represent the number of digits Sam memorized. \n\nStep 2: We know that Mina memorized 24 digits of pi, and we know that she memorized six times as many digits as Carlos. So, we can write an equation to represent this: \n\n24 = 6C \n\nStep 3: Now, we need to find the value of 'C'. We can solve for 'C' by dividing both sides of the equation by 6: \n\n24 / 6 = C \n\nC = 4 \n\nStep 4: We know that Sam memorized six more digits of pi than Carlos. So, we can write another equation to represent this: \n\nS = C + 6 \n\nStep 5: We know that 'C' is 4, so we can substitute that value into the equation: \n\nS = 4 + 6 \n\nS = 10 \n\nStep 6: So, Sam memorized 10 digits of pi.",
+  "predicted_answer": "10",
+  "is_correct": true
+}

@@ -1,0 +1,9 @@
+{
+  "index": 28,
+  "question": "There are 5 houses on a street, and each of the first four houses has 3 gnomes in the garden. If there are a total of 20 gnomes on the street, how many gnomes does the fifth house have?",
+  "gold_solution": "8",
+  "prompt": "Question: There are 5 houses on a street, and each of the first four houses has 3 gnomes in the garden. If there are a total of 20 gnomes on the street, how many gnomes does the fifth house have?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: There are 5 houses on a street, and each of the first four houses has 3 gnomes in the garden. If there are a total of 20 gnomes on the street, how many gnomes does the fifth house have?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: We know that there are 5 houses on the street, and the first four houses have 3 gnomes each. So, we can calculate the total number of gnomes in the first four houses by multiplying the number of houses by the number of gnomes per house: 4 houses * 3 gnomes/house = 12 gnomes.\n\nStep 2: We also know that there are a total of 20 gnomes on the street. To find out how many gnomes are in the fifth house, we can subtract the number of gnomes in the first four houses from the total number of gnomes: 20 gnomes - 12 gnomes = 8 gnomes.\n\nTherefore, the fifth house has 8 gnomes.",
+  "predicted_answer": "8",
+  "is_correct": true
+}

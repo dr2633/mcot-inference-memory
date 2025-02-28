@@ -1,0 +1,9 @@
+{
+  "index": 25,
+  "question": "Ralph is going to practice playing tennis with a tennis ball machine that shoots out tennis balls for Ralph to hit. He loads up the machine with 175 tennis balls to start with. Out of the first 100 balls, he manages to hit 2/5 of them. Of the next 75 tennis balls, he manages to hit 1/3 of them. Out of all the tennis balls, how many did Ralph not hit?",
+  "gold_solution": "110",
+  "prompt": "Question: Ralph is going to practice playing tennis with a tennis ball machine that shoots out tennis balls for Ralph to hit. He loads up the machine with 175 tennis balls to start with. Out of the first 100 balls, he manages to hit 2/5 of them. Of the next 75 tennis balls, he manages to hit 1/3 of them. Out of all the tennis balls, how many did Ralph not hit?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Ralph is going to practice playing tennis with a tennis ball machine that shoots out tennis balls for Ralph to hit. He loads up the machine with 175 tennis balls to start with. Out of the first 100 balls, he manages to hit 2/5 of them. Of the next 75 tennis balls, he manages to hit 1/3 of them. Out of all the tennis balls, how many did Ralph not hit?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nOut of the first 100 balls, Ralph hits 2/5 of them, or 2/5 * 100 = 40 tennis balls.\nOut of the next 75 balls, Ralph hits 1/3 of them, or 1/3 * 75 = 25 tennis balls.\nRalph hits a total of 40 + 25 = 65 tennis balls.\nRalph did not hit 175 - 65 = 110 tennis balls.\nTherefore, the answer is 110.",
+  "predicted_answer": "110",
+  "is_correct": true
+}

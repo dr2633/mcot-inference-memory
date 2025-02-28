@@ -1,0 +1,9 @@
+{
+  "index": 44,
+  "question": "James is a first-year student at a University in Chicago. He has a budget of $1000 per semester. He spends 30% of his money on food, 15% on accommodation, 25% on entertainment, and the rest on coursework materials. How much money does he spend on coursework materials?",
+  "gold_solution": "300",
+  "prompt": "Question: James is a first-year student at a University in Chicago. He has a budget of $1000 per semester. He spends 30% of his money on food, 15% on accommodation, 25% on entertainment, and the rest on coursework materials. How much money does he spend on coursework materials?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: James is a first-year student at a University in Chicago. He has a budget of $1000 per semester. He spends 30% of his money on food, 15% on accommodation, 25% on entertainment, and the rest on coursework materials. How much money does he spend on coursework materials?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, we need to determine the percentage of James' budget that goes towards food, accommodation, and entertainment. \n\nTo do this, we can add the percentages together: \n\n30% (food) + 15% (accommodation) + 25% (entertainment) = 70%\n\nNow, we can subtract this percentage from 100% to find the percentage of James' budget that goes towards coursework materials: \n\n100% - 70% = 30%\n\nFinally, we can multiply this percentage by James' budget to find out how much he spends on coursework materials: \n\n30% (30/100) x $1000 = $300\n\nTherefore, James spends $300 on coursework materials.",
+  "predicted_answer": "300",
+  "is_correct": true
+}

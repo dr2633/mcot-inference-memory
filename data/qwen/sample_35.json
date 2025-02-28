@@ -1,0 +1,9 @@
+{
+  "index": 35,
+  "question": "Mr. Sanchez found out that 40% of his Grade 5  students got a final grade below B. How many of his students got a final grade of B and above if he has 60 students in Grade 5?",
+  "gold_solution": "36",
+  "prompt": "Question: Mr. Sanchez found out that 40% of his Grade 5  students got a final grade below B. How many of his students got a final grade of B and above if he has 60 students in Grade 5?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Mr. Sanchez found out that 40% of his Grade 5  students got a final grade below B. How many of his students got a final grade of B and above if he has 60 students in Grade 5?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nSure, I can help you with that. \n\nFirst, we need to find out how many students got a final grade below B. We know that 40% of the students got a final grade below B, so we can use the formula:\n\n40% of 60 students = 0.4 x 60 = 24 students\n\nSo, 24 students got a final grade below B.\n\nNext, we need to find out how many students got a final grade of B and above. We know that the total number of students is 60, and we already know that 24 students got a final grade below B. So, the number of students who got a final grade of B and above is:\n\n60 students - 24 students = 36 students\n\nTherefore, 36 students got a final grade of B and above. \n\nSo, the final answer is: 36 <integer>.",
+  "predicted_answer": "36",
+  "is_correct": true
+}

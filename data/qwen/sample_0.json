@@ -1,0 +1,9 @@
+{
+  "index": 0,
+  "question": "Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?",
+  "gold_solution": "72",
+  "prompt": "Question: Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Natalia sold clips to 48 of her friends in April, and then she sold half as many clips in May. How many clips did Natalia sell altogether in April and May?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, we need to find out how many clips Natalia sold in May. Since she sold half as many clips in May as she did in April, we can multiply the number of clips she sold in April by 0.5 to find out how many she sold in May. \n\n48 clips * 0.5 = 24 clips\n\nNow we can add the number of clips she sold in April and May to find the total number of clips she sold altogether. \n\n48 clips + 24 clips = 72 clips\n\nTherefore, Natalia sold a total of 72 clips in April and May.",
+  "predicted_answer": "72",
+  "is_correct": true
+}

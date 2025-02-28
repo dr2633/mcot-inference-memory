@@ -1,0 +1,9 @@
+{
+  "index": 34,
+  "question": "Mr. Sam shared a certain amount of money between his two sons, Ken and Tony. If Ken got $1750, and Tony got twice as much as Ken, how much was the money shared?",
+  "gold_solution": "5250",
+  "prompt": "Question: Mr. Sam shared a certain amount of money between his two sons, Ken and Tony. If Ken got $1750, and Tony got twice as much as Ken, how much was the money shared?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Mr. Sam shared a certain amount of money between his two sons, Ken and Tony. If Ken got $1750, and Tony got twice as much as Ken, how much was the money shared?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, we need to find out how much Tony got. We know that Tony got twice as much as Ken, so we can multiply Ken's amount by 2 to get Tony's amount. \n\n$1750 \\times 2 = 3500$\n\nSo Tony got $3500. \n\nNow we need to find out how much money was shared in total. We can add Ken's amount and Tony's amount to find the total amount shared. \n\n$1750 + 3500 = 5250$\n\nSo the money was shared in total for $5250. \n\nTherefore, the answer is 5250.",
+  "predicted_answer": "5250",
+  "is_correct": true
+}

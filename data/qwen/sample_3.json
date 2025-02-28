@@ -1,0 +1,9 @@
+{
+  "index": 3,
+  "question": "Julie is reading a 120-page book. Yesterday, she was able to read 12 pages and today, she read twice as many pages as yesterday. If she wants to read half of the remaining pages tomorrow, how many pages should she read?",
+  "gold_solution": "42",
+  "prompt": "Question: Julie is reading a 120-page book. Yesterday, she was able to read 12 pages and today, she read twice as many pages as yesterday. If she wants to read half of the remaining pages tomorrow, how many pages should she read?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Julie is reading a 120-page book. Yesterday, she was able to read 12 pages and today, she read twice as many pages as yesterday. If she wants to read half of the remaining pages tomorrow, how many pages should she read?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStep 1: Find the total number of pages Julie has to read by finding the difference between the number of pages in the book and the number of pages she has already read. 120 - 12 = 108 pages left to read.\nStep 2: Find the number of pages Julie read today by multiplying the number of pages she read yesterday by 2. 12 x 2 = 24 pages read today.\nStep 3: Find the total number of pages Julie read by adding the number of pages she read yesterday and today. 12 + 24 = 36 pages read so far.\nStep 4: Find the number of pages Julie has to read tomorrow by dividing the number of pages left to read by 2. 108 / 2 = 54 pages left to read tomorrow.\nStep 5: Find the number of pages Julie should read tomorrow by subtracting the number of pages she read today from the number of pages she has to read tomorrow. 54 - 36 = 18 pages.\nThe answer is 18.",
+  "predicted_answer": "18",
+  "is_correct": false
+}

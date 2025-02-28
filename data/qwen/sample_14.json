@@ -1,0 +1,9 @@
+{
+  "index": 14,
+  "question": "Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?",
+  "gold_solution": "5",
+  "prompt": "Question: Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStep 1: Find the number of minutes it takes Joy to read 1 page.\n8 pages / 20 minutes = 0.4 pages per minute.\n1 page / 0.4 minutes = 2.5 minutes.\nStep 2: Find the number of minutes it takes Joy to read 120 pages.\n120 pages / 2.5 minutes = 48 minutes.\nStep 3: Convert minutes to hours.\n48 minutes / 60 minutes/hour = 0.8 hours.\nThe answer is 0.8.",
+  "predicted_answer": "0.8",
+  "is_correct": false
+}

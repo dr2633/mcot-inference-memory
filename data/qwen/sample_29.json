@@ -1,0 +1,9 @@
+{
+  "index": 29,
+  "question": "Mrs. Snyder used to spend 40% of her monthly income on rent and utilities. Her salary was recently increased by $600 so now her rent and utilities only amount to 25% of her monthly income. How much was her previous monthly income?",
+  "gold_solution": "1000",
+  "prompt": "Question: Mrs. Snyder used to spend 40% of her monthly income on rent and utilities. Her salary was recently increased by $600 so now her rent and utilities only amount to 25% of her monthly income. How much was her previous monthly income?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Mrs. Snyder used to spend 40% of her monthly income on rent and utilities. Her salary was recently increased by $600 so now her rent and utilities only amount to 25% of her monthly income. How much was her previous monthly income?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Let's start by defining the variables we need. Let's call the previous monthly income 'x'. We know that Mrs. Snyder used to spend 40% of her income on rent and utilities, so we can write this as 0.4x. We also know that her salary was recently increased by $600, so we can write this as x + 600. \n\nStep 2: We want to find out how much Mrs. Snyder used to spend on rent and utilities, so we can set up an equation: 0.4x = 0.25(x + 600). \n\nStep 3: To solve for x, we can multiply both sides of the equation by 4: 1.6x = 1.25x + 1500. \n\nStep 4: We can then subtract 1.25x from both sides of the equation: 0.35x = 1500. \n\nStep 5: Finally, we can divide both sides of the equation by 0.35 to find x: x = 43,000. \n\nTherefore, Mrs. Snyder's previous monthly",
+  "predicted_answer": "000",
+  "is_correct": false
+}

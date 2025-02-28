@@ -1,0 +1,9 @@
+{
+  "index": 10,
+  "question": "A deep-sea monster rises from the waters once every hundred years to feast on a ship and sate its hunger. Over three hundred years, it has consumed 847 people. Ships have been built larger over time, so each new ship has twice as many people as the last ship. How many people were on the ship the monster ate in the first hundred years?",
+  "gold_solution": "121",
+  "prompt": "Question: A deep-sea monster rises from the waters once every hundred years to feast on a ship and sate its hunger. Over three hundred years, it has consumed 847 people. Ships have been built larger over time, so each new ship has twice as many people as the last ship. How many people were on the ship the monster ate in the first hundred years?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: A deep-sea monster rises from the waters once every hundred years to feast on a ship and sate its hunger. Over three hundred years, it has consumed 847 people. Ships have been built larger over time, so each new ship has twice as many people as the last ship. How many people were on the ship the monster ate in the first hundred years?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nThe monster ate 847 people over 300 years, so it ate 847 / 3 = 282 people per hundred years. Each new ship has twice as many people as the last ship, so the monster ate 282 * 2 = 564 people on the first hundred years' ship. The answer is therefore 564 <integer>.\nThe answer is: 564.",
+  "predicted_answer": "564",
+  "is_correct": false
+}

@@ -1,0 +1,9 @@
+{
+  "index": 36,
+  "question": "Lisa, Jack, and Tommy earned $60 from washing cars all week. However, half of the $60 was earned by Lisa. Tommy earned half of what Lisa earned. How much more money did Lisa earn than Tommy?",
+  "gold_solution": "15",
+  "prompt": "Question: Lisa, Jack, and Tommy earned $60 from washing cars all week. However, half of the $60 was earned by Lisa. Tommy earned half of what Lisa earned. How much more money did Lisa earn than Tommy?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Lisa, Jack, and Tommy earned $60 from washing cars all week. However, half of the $60 was earned by Lisa. Tommy earned half of what Lisa earned. How much more money did Lisa earn than Tommy?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, we need to find out how much Lisa earned. We know that half of the $60 was earned by Lisa, so we can divide $60 by 2 to find out how much Lisa earned: $60 / 2 = $30. \n\nNext, we need to find out how much Tommy earned. We know that Tommy earned half of what Lisa earned, so we can multiply $30 by 1/2 to find out how much Tommy earned: $30 * 1/2 = $15. \n\nTo find out how much more money Lisa earned than Tommy, we can subtract Tommy's earnings from Lisa's earnings: $30 - $15 = $15. \n\nTherefore, Lisa earned $15 more than Tommy.",
+  "predicted_answer": "15",
+  "is_correct": true
+}

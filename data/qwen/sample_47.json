@@ -1,0 +1,9 @@
+{
+  "index": 47,
+  "question": "The file, 90 megabytes in size, downloads at the rate of 5 megabytes per second for its first 60 megabytes, and then 10 megabytes per second thereafter. How long, in seconds, does it take to download entirely?",
+  "gold_solution": "15",
+  "prompt": "Question: The file, 90 megabytes in size, downloads at the rate of 5 megabytes per second for its first 60 megabytes, and then 10 megabytes per second thereafter. How long, in seconds, does it take to download entirely?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: The file, 90 megabytes in size, downloads at the rate of 5 megabytes per second for its first 60 megabytes, and then 10 megabytes per second thereafter. How long, in seconds, does it take to download entirely?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Calculate the time it takes to download the first 60 megabytes at 5 megabytes per second.\nTime to download first 60 MB = 60 MB / 5 MB/s = 12 seconds\n\nStep 2: Calculate the time it takes to download the remaining 30 megabytes at 10 megabytes per second.\nTime to download remaining 30 MB = 30 MB / 10 MB/s = 3 seconds\n\nStep 3: Add the time to download the first 60 MB and the time to download the remaining 30 MB to find the total time it takes to download the entire file.\nTotal time = 12 seconds + 3 seconds = 15 seconds\n\nFinal answer: #### 15",
+  "predicted_answer": "15",
+  "is_correct": true
+}

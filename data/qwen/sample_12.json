@@ -1,0 +1,9 @@
+{
+  "index": 12,
+  "question": "Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?",
+  "gold_solution": "85",
+  "prompt": "Question: Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nStep 1: Find the number of coconut trees Randy has.\nHalf of the number of mango trees is 60/2 = 30.\nSo, Randy has 30 - 5 = 25 coconut trees.\n\nStep 2: Add the number of mango and coconut trees to find the total number of trees Randy has.\nRandy has 60 + 25 = 85 trees in total.\n\nFinal answer: #### 85 <integer>",
+  "predicted_answer": "85",
+  "is_correct": true
+}

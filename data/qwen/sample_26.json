@@ -1,0 +1,9 @@
+{
+  "index": 26,
+  "question": "Jack is stranded on a desert island. He wants some salt to season his fish. He collects 2 liters of seawater in an old bucket. If the water is 20% salt, how many ml of salt will Jack get when all the water evaporates?",
+  "gold_solution": "400",
+  "prompt": "Question: Jack is stranded on a desert island. He wants some salt to season his fish. He collects 2 liters of seawater in an old bucket. If the water is 20% salt, how many ml of salt will Jack get when all the water evaporates?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Jack is stranded on a desert island. He wants some salt to season his fish. He collects 2 liters of seawater in an old bucket. If the water is 20% salt, how many ml of salt will Jack get when all the water evaporates?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, we need to find out how much salt is in the 2 liters of seawater. We can do this by multiplying the amount of water by the percentage of salt in the water. \n\n2 liters of seawater x 20% salt = 0.4 liters of salt\n\nNext, we need to convert the amount of salt from liters to milliliters. We can do this by multiplying the amount of salt by 1000. \n\n0.4 liters x 1000 ml/liter = 400 ml of salt\n\nTherefore, Jack will get 400 ml of salt when all the water evaporates.",
+  "predicted_answer": "400",
+  "is_correct": true
+}

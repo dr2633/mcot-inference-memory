@@ -1,0 +1,9 @@
+{
+  "index": 4,
+  "question": "James writes a 3-page letter to 2 different friends twice a week.  How many pages does he write a year?",
+  "gold_solution": "624",
+  "prompt": "Question: James writes a 3-page letter to 2 different friends twice a week.  How many pages does he write a year?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: James writes a 3-page letter to 2 different friends twice a week.  How many pages does he write a year?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nTo solve this problem, we need to first find out how many pages James writes in a week. Since he writes a 3-page letter to 2 different friends twice a week, he writes 3 x 2 = 6 pages in a week. \n\nNext, we need to find out how many weeks there are in a year. There are 52 weeks in a year. \n\nNow, we can multiply the number of pages James writes in a week by the number of weeks in a year to find out how many pages he writes in a year. \n\nSo, the final answer is: 6 x 52 = #### 312. \n\nTherefore, James writes 312 pages a year.",
+  "predicted_answer": "312",
+  "is_correct": false
+}

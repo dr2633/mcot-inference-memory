@@ -1,0 +1,9 @@
+{
+  "index": 9,
+  "question": "Tina makes $18.00 an hour.  If she works more than 8 hours per shift, she is eligible for overtime, which is paid by your hourly wage + 1/2 your hourly wage.  If she works 10 hours every day for 5 days, how much money does she make?",
+  "gold_solution": "990",
+  "prompt": "Question: Tina makes $18.00 an hour.  If she works more than 8 hours per shift, she is eligible for overtime, which is paid by your hourly wage + 1/2 your hourly wage.  If she works 10 hours every day for 5 days, how much money does she make?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Tina makes $18.00 an hour.  If she works more than 8 hours per shift, she is eligible for overtime, which is paid by your hourly wage + 1/2 your hourly wage.  If she works 10 hours every day for 5 days, how much money does she make?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nTo solve this problem, we need to calculate Tina's total earnings for 5 days of working 10 hours per day. \n\nStep 1: Calculate Tina's earnings for one day of working 10 hours.\nTina earns $18.00 per hour, and she works 10 hours per day. So, her earnings for one day are:\n$18.00/hour * 10 hours/day = $180.00/day\n\nStep 2: Calculate Tina's earnings for 5 days of working 10 hours per day.\nSince Tina works 10 hours per day for 5 days, we can calculate her earnings for 5 days by multiplying her earnings for one day by 5:\n$180.00/day * 5 days = $900.00\n\nSo, Tina makes $900.00 in 5 days if she works 10 hours per day and is eligible for overtime.",
+  "predicted_answer": "10",
+  "is_correct": false
+}

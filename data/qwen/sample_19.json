@@ -1,0 +1,9 @@
+{
+  "index": 19,
+  "question": "Tim rides his bike back and forth to work for each of his 5 workdays.  His work is 20 miles away.  He also goes for a weekend bike ride of 200 miles.    If he can bike at 25 mph how much time does he spend biking a week?",
+  "gold_solution": "16",
+  "prompt": "Question: Tim rides his bike back and forth to work for each of his 5 workdays.  His work is 20 miles away.  He also goes for a weekend bike ride of 200 miles.    If he can bike at 25 mph how much time does he spend biking a week?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Tim rides his bike back and forth to work for each of his 5 workdays.  His work is 20 miles away.  He also goes for a weekend bike ride of 200 miles.    If he can bike at 25 mph how much time does he spend biking a week?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nTo solve this problem, we need to find out how many miles Tim bikes in a week and then divide that by his speed to find out how much time he spends biking. \n\nFirst, let's find out how many miles Tim bikes in a week. He bikes to work 5 days a week, so he bikes 20 miles x 5 = 100 miles in a week. \n\nNext, let's find out how many miles he bikes in a weekend ride. He bikes 200 miles in a weekend ride. \n\nNow, let's add up the miles he bikes in a week and in a weekend ride. \n\n100 miles (work) + 200 miles (weekend) = 300 miles \n\nSo, Tim bikes a total of 300 miles in a week. \n\nFinally, let's divide the total miles by his speed to find out how much time he spends biking. \n\n300 miles \u00f7 25 mph = 12 hours \n\nTherefore, Tim spends 12 hours biking a week. \n\nThe answer is: #### 12.",
+  "predicted_answer": "12",
+  "is_correct": false
+}

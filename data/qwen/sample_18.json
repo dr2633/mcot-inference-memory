@@ -1,0 +1,9 @@
+{
+  "index": 18,
+  "question": "It takes Roque two hours to walk to work and one hour to ride his bike to work. Roque walks to and from work three times a week and rides his bike to and from work twice a week. How many hours in total does he take to get to and from work a week with walking and biking?",
+  "gold_solution": "16",
+  "prompt": "Question: It takes Roque two hours to walk to work and one hour to ride his bike to work. Roque walks to and from work three times a week and rides his bike to and from work twice a week. How many hours in total does he take to get to and from work a week with walking and biking?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: It takes Roque two hours to walk to work and one hour to ride his bike to work. Roque walks to and from work three times a week and rides his bike to and from work twice a week. How many hours in total does he take to get to and from work a week with walking and biking?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nTo solve this problem, we need to first calculate the total time Roque spends walking to and from work in a week. Since he walks to and from work three times a week, the total time he spends walking is 3 * 2 = 6 hours. \n\nNext, we need to calculate the total time Roque spends biking to and from work in a week. Since he rides his bike to and from work twice a week, the total time he spends biking is 2 * 1 = 2 hours. \n\nTo find the total time Roque spends getting to and from work in a week, we need to add the time he spends walking and biking. Therefore, the total time he spends getting to and from work in a week is 6 + 2 = 8 hours. \n\nTherefore, the answer is 8 <integer>.",
+  "predicted_answer": "8",
+  "is_correct": false
+}

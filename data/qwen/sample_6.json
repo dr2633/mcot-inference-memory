@@ -1,0 +1,9 @@
+{
+  "index": 6,
+  "question": "Albert is wondering how much pizza he can eat in one day. He buys 2 large pizzas and 2 small pizzas. A large pizza has 16 slices and a small pizza has 8 slices. If he eats it all, how many pieces does he eat that day?",
+  "gold_solution": "48",
+  "prompt": "Question: Albert is wondering how much pizza he can eat in one day. He buys 2 large pizzas and 2 small pizzas. A large pizza has 16 slices and a small pizza has 8 slices. If he eats it all, how many pieces does he eat that day?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Albert is wondering how much pizza he can eat in one day. He buys 2 large pizzas and 2 small pizzas. A large pizza has 16 slices and a small pizza has 8 slices. If he eats it all, how many pieces does he eat that day?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nAlbert buys 2 large pizzas and 2 small pizzas, which means he has a total of 4 pizzas. A large pizza has 16 slices and a small pizza has 8 slices, so the total number of slices he has is 16 + 8 = 24. If he eats all of the pizza, he will have eaten 24 slices. Therefore, the answer is 24.",
+  "predicted_answer": "24",
+  "is_correct": false
+}

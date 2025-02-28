@@ -1,0 +1,9 @@
+{
+  "index": 23,
+  "question": "Ann's favorite store was having a summer clearance. For $75 she bought 5 pairs of shorts for $7 each and 2 pairs of shoes for $10 each. She also bought 4 tops, all at the same price. How much did each top cost?",
+  "gold_solution": "5",
+  "prompt": "Question: Ann's favorite store was having a summer clearance. For $75 she bought 5 pairs of shorts for $7 each and 2 pairs of shoes for $10 each. She also bought 4 tops, all at the same price. How much did each top cost?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Ann's favorite store was having a summer clearance. For $75 she bought 5 pairs of shorts for $7 each and 2 pairs of shoes for $10 each. She also bought 4 tops, all at the same price. How much did each top cost?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, let's find out how much Ann spent on shorts. She bought 5 pairs of shorts for $7 each, so the total cost of shorts is 5 x $7 = $35. \n\nNext, let's find out how much Ann spent on shoes. She bought 2 pairs of shoes for $10 each, so the total cost of shoes is 2 x $10 = $20. \n\nNow, let's add the cost of shorts and shoes to find the total amount Ann spent on clothes: $35 + $20 = $55. \n\nSince Ann spent $75 in total, we can subtract the cost of clothes from the total amount to find out how much she spent on tops: $75 - $55 = $20. \n\nFinally, we can divide the amount Ann spent on tops by the number of tops she bought to find out how much each top cost: $20 / 4 = $5. \n\nTherefore, each top cost $5.",
+  "predicted_answer": "5",
+  "is_correct": true
+}

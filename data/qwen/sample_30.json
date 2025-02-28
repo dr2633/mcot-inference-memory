@@ -1,0 +1,9 @@
+{
+  "index": 30,
+  "question": "Ann, Bill, Cate, and Dale each buy personal pan pizzas cut into 4 pieces. If Bill and Dale eat 50% of their pizzas and Ann and Cate eat 75% of the pizzas, how many pizza pieces are left uneaten?",
+  "gold_solution": "6",
+  "prompt": "Question: Ann, Bill, Cate, and Dale each buy personal pan pizzas cut into 4 pieces. If Bill and Dale eat 50% of their pizzas and Ann and Cate eat 75% of the pizzas, how many pizza pieces are left uneaten?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Ann, Bill, Cate, and Dale each buy personal pan pizzas cut into 4 pieces. If Bill and Dale eat 50% of their pizzas and Ann and Cate eat 75% of the pizzas, how many pizza pieces are left uneaten?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nStudent:\n\nFirst, let's find out how many pieces of pizza each person eats. Bill and Dale eat 50% of their pizzas, so they eat 2 pieces each. Ann and Cate eat 75% of their pizzas, so they eat 3 pieces each. \n\nNext, we can add up the pieces of pizza that each person eats: 2 + 2 + 3 + 3 = 10 pieces. \n\nNow, we can subtract the number of pieces eaten from the total number of pieces: 4 x 4 = 16 pieces. \n\nFinally, we can divide the number of pieces eaten by the total number of pieces to find out how many pieces are left uneaten: 16 / 10 = 1.6. \n\nSince we can't have a fraction of a piece of pizza, we can round up to the nearest integer: 2 pieces. \n\nTherefore, the answer is 2.",
+  "predicted_answer": "2",
+  "is_correct": false
+}

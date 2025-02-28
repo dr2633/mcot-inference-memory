@@ -1,0 +1,9 @@
+{
+  "index": 21,
+  "question": "Each bird eats 12 beetles per day, each snake eats 3 birds per day, and each jaguar eats 5 snakes per day. If there are 6 jaguars in a forest, how many beetles are eaten each day?",
+  "gold_solution": "1080",
+  "prompt": "Question: Each bird eats 12 beetles per day, each snake eats 3 birds per day, and each jaguar eats 5 snakes per day. If there are 6 jaguars in a forest, how many beetles are eaten each day?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\n",
+  "generated_text": "Question: Each bird eats 12 beetles per day, each snake eats 3 birds per day, and each jaguar eats 5 snakes per day. If there are 6 jaguars in a forest, how many beetles are eaten each day?\nLet's reason through this step by step.\nShow all steps of your reasoning and conclude with the final answer in the format '#### <integer>'.\nFirst find the total number of snakes eaten by the jaguars: 6 jaguars * 5 snakes / jaguar = 30 snakes. Then find the total number of birds eaten by the snakes: 30 snakes * 3 birds / snake = 90 birds. Then find the total number of beetles eaten by the birds: 90 birds * 12 beetles / bird = 1080 beetles.\nThe answer is therefore 1080.",
+  "predicted_answer": "1080",
+  "is_correct": true
+}

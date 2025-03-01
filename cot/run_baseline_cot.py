@@ -6,7 +6,7 @@
 run_baseline_cot.py
 
 A baseline Chain-of-Thought (CoT) script for evaluating Qwen on the GSM8K dataset.
-Collects token usage statistics and basic accuracy metrics.
+Collects token usage statistics, accuracy metrics, and generation time per sample.
 """
 
 import argparse
@@ -14,6 +14,7 @@ import torch
 import os
 import json
 import re
+import time
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -66,12 +67,11 @@ def parse_args():
     parser.add_argument(
         "--output_dir",
         type=str,
-        default=os.path.join(os.getcwd(), "data/qwen"),  # Save relative to the script
+        default=os.path.join(os.getcwd(), "data/qwen"),
         help="Directory to store evaluation JSON outputs."
     )
 
     return parser.parse_args()
-
 
 # ----------------------------------------------
 # Chain-of-Thought Prompt Construction
@@ -95,6 +95,9 @@ def generate_cot_and_answer(
     device: str
 ):
     inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    input_tokens = inputs.input_ids.shape[1]
+
+    start_time = time.time()
     with torch.no_grad():
         output_ids = model.generate(
             **inputs,
@@ -103,22 +106,25 @@ def generate_cot_and_answer(
             temperature=temperature,
             eos_token_id=tokenizer.eos_token_id
         )
+    end_time = time.time()
+
     output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-    return output_text
+    output_tokens = output_ids.shape[1] - input_tokens  # Only count newly generated tokens
+    generation_time = end_time - start_time
+
+    return output_text, input_tokens, output_tokens, generation_time
 
 def extract_final_answer(generated_text: str) -> str:
     print(f"[DEBUG] Raw Model Output:\n{generated_text}\n", flush=True)
 
-    # First, check for explicit '#### <integer>' format
     match = re.search(r'####\s*(\d+)', generated_text)
     if match:
         return match.group(1)
 
-    # If not found, look for the last number in the output
     numbers = re.findall(r"[-+]?\d*\.\d+|\d+", generated_text)
     if numbers:
         print(f"[DEBUG] Extracted Numbers: {numbers}", flush=True)
-        return numbers[-1]  # Take the last number as the final answer
+        return numbers[-1]
 
     return "N/A"
 
@@ -148,11 +154,15 @@ def main():
     results = []
     os.makedirs(args.output_dir, exist_ok=True)
 
+    total_tokens_used = 0
+    total_generation_time = 0
+
     for idx, sample in enumerate(ds):
         question = sample["question"]
         gold_solution = get_ground_truth_answer(sample["answer"].strip().lower())
         prompt = build_cot_prompt(question, args.prompt_prefix)
-        generated_text = generate_cot_and_answer(
+
+        generated_text, input_tokens, output_tokens, generation_time = generate_cot_and_answer(
             model=model,
             tokenizer=tokenizer,
             prompt=prompt,
@@ -161,13 +171,12 @@ def main():
             device=args.device
         )
         predicted_answer = extract_final_answer(generated_text).strip().lower()
-        # Normalize answers by stripping spaces, newlines, and punctuation
-        normalized_predicted = re.sub(r"[^\d]", "", predicted_answer.strip())  # Keep only numbers
-        normalized_gold = re.sub(r"[^\d]", "", gold_solution.strip())  # Keep only numbers
+
+        normalized_predicted = re.sub(r"[^\d]", "", predicted_answer.strip())
+        normalized_gold = re.sub(r"[^\d]", "", gold_solution.strip())
 
         is_correct = (normalized_predicted == normalized_gold)
 
-        # Print Model Output for Debugging
         print(f"\n[DEBUG] Sample {idx + 1}/{len(ds)}", flush=True)
         print(f"Question: {question}", flush=True)
         print(f"Prompt Used:\n{prompt}", flush=True)
@@ -175,10 +184,12 @@ def main():
         print(f"Extracted Answer: {predicted_answer}", flush=True)
         print(f"Expected Answer: {gold_solution}", flush=True)
         print(f"Correct?: {is_correct}", flush=True)
+        print(f"Input Tokens: {input_tokens}, Output Tokens: {output_tokens}, Generation Time: {generation_time:.3f} sec", flush=True)
         print("-" * 80, flush=True)
 
-        # Save per-sample JSON
-        os.makedirs(args.output_dir, exist_ok=True)
+        total_tokens_used += (input_tokens + output_tokens)
+        total_generation_time += generation_time
+
         result_entry = {
             "index": idx,
             "question": question,
@@ -187,6 +198,10 @@ def main():
             "generated_text": generated_text,
             "predicted_answer": predicted_answer,
             "is_correct": is_correct,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "total_tokens": input_tokens + output_tokens,
+            "generation_time": generation_time
         }
         results.append(result_entry)
 
@@ -194,11 +209,27 @@ def main():
             json.dump(result_entry, f, indent=2)
 
     overall_accuracy = sum(r["is_correct"] for r in results) / len(results)
+    avg_generation_time = total_generation_time / len(results)
+    avg_tokens_per_sample = total_tokens_used / len(results)
+
     print("\nEvaluation Complete.")
     print(f"Accuracy: {overall_accuracy:.2%}")
+    print(f"Total Tokens Used: {total_tokens_used}")
+    print(f"Average Tokens Per Sample: {avg_tokens_per_sample:.2f}")
+    print(f"Total Generation Time: {total_generation_time:.2f} sec")
+    print(f"Average Generation Time Per Sample: {avg_generation_time:.3f} sec")
+
+    summary = {
+        "overall_accuracy": overall_accuracy,
+        "total_tokens_used": total_tokens_used,
+        "avg_tokens_per_sample": avg_tokens_per_sample,
+        "total_generation_time": total_generation_time,
+        "avg_generation_time_per_sample": avg_generation_time,
+        "results": results
+    }
 
     with open(os.path.join(args.output_dir, "baseline_cot_results.json"), "w", encoding="utf-8") as f:
-        json.dump({"overall_accuracy": overall_accuracy, "results": results}, f, indent=2)
+        json.dump(summary, f, indent=2)
     print(f"Results saved to {args.output_dir}/baseline_cot_results.json")
 
 if __name__ == "__main__":

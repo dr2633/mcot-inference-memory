@@ -122,14 +122,4 @@ Compare pre-trained vs. GRPO-optimized reasoning:
 python evaluate_rl.py
 ```
 
-### 3. Run Textbook-Based Evaluation
-To analyze how GRPO adapts reasoning across structured learning tasks:
-```bash
-python evaluate_textbook_rl.py
-```
-This allows step-by-step reinforcement learning through textbook chapters.
-
-
-
-
 

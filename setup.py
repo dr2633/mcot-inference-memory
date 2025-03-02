@@ -6,7 +6,7 @@ setup(
     author="Derek Rosenzweig",
     author_email="derek.rosenzweig1@gmail.com",
     description="Inference Preference Optimization: Conditioning CoT and GRPO with Memory",
-    long_description=open("README.md", encoding="utf-8").read(),
+    long_description=open("documentation/3-2/3-2-README-roadmap.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/dr2633/mCoT-GRPO-IPO",
     packages=find_packages(),  # Automatically find packages in the repository

@@ -1,100 +1,135 @@
 ## Inference Preference Optimization (IPO): Augmenting GRPO with Memory
 
-This repository explores Memory-Guided Chain-of-Thought (mCoT) reasoning using Group Relative Policy Optimization (GRPO) to optimize inference-time reasoning with user-specific and user-specified memory retrieval with FAISS.
+## Overview
+Inference Preference Optimization (IPO) enhances reasoning in LLMs by integrating memory retrieval into Group Relative Policy Optimization (GRPO), enabling models to adapt responses dynamically based on a user's prior learning.
 
----
+This repository first evaluates memory-conditioned Chain-of-Thought (mCoT) reasoning in LLMs on the GSM8K dataset using memory retrieval with FAISS. mCoT serves as a critical validation step for IPO by demonstrating how consolidating prior interactions and retrieving relevant user-specific memory can personalize model reasoning. Once validated, GRPO further optimizes inference paths by conditioning reinforcement learning on retrieved memory, forming the basis of IPO.
 
-## Repository Overview
+### Key Features
+- **FAISS-based retrieval** to match questions with relevant student profiles
+- **Memory-conditioned CoT (mCoT)** for dynamically refined responses, validating memory retrieval effectiveness
+- **Inference Preference Optimization (IPO):** GRPO conditioned with user memory to personalize reasoning sequences
+- **Textbook-based evaluation** for GRPO, tracking reasoning adaptation based on retrieved user progress
 
-This repository extends standard Chain-of-Thought (CoT) reasoning by integrating memory and GRPO to personalize reasoning paths based on user preferences and past interactions.
+## Installation & Setup
 
-- Memory-Guideded CoT enables models to refine responses over multiple sessions.  
-- Inference Preference Optimization (IPO) adapts reasoning preferences dynamically, optimizing inference-time outputs by conditioning GRPO with memory.  
-- Customizable User Preferences allows users to specify formatting, reasoning style, and memory.  
-
----
-
-## Getting Started
-This section guides you through setting up the repository and running key scripts.
-
-```python
-git clone https://github.com/dr2633/mcot-inference-memory
-cd mcot-inference-memory
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+Or manually install:
+```bash
+pip install torch transformers datasets faiss-cpu sentence-transformers matplotlib seaborn pandas spacy
+python -m spacy download en_core_web_sm
 ```
 
-### Install Dependencies
-Ensure Python 3.8+ is installed. Then, install the required packages.
-
-```python
- pip install -r requirements.txt
+### 2. Clone Repository
+```bash
+git clone https://github.com/your-repo/mCoT-GRPO-IPO.git
+cd mCoT-GRPO-IPO
 ```
 
-### Set Up FAISS for Memory Retrieval
-Initialize the FAISS memory store to enable memory retrieval for CoT reasoning.
-  
-```python
-python memory/retrieval_faiss.py --build_index
+### 3. Connecting to a Lambda Instance
+
+#### **1. Set Up SSH Access**
+Generate an SSH key pair if you do not have one:
+```bash
+ssh-keygen -t ed25519 -f ~/.ssh/lambda_key -C "your-email@example.com"
+```
+Ensure the key has the correct permissions:
+```bash
+chmod 600 ~/.ssh/lambda_key
+```
+
+#### **2. Add Your Public Key to Lambda Cloud**
+1. Log in to [Lambda Cloud](https://lambdalabs.com/cloud).
+2. Go to **SSH Keys** under **Settings**.
+3. Click **Add SSH Key**.
+4. Copy the public key:
+   ```bash
+   cat ~/.ssh/lambda_key.pub
+   ```
+
+#### **3. Connect to Your Instance**
+```bash
+ssh -i ~/.ssh/lambda_key ubuntu@<your-instance-ip>
+```
+
+Verify that the GPU is detected:
+```bash
+nvidia-smi
+```
+
+## Usage
+
+### 1. Run Memory-Conditioned CoT Evaluation
+```bash
+cd cot 
+python run_baseline_cot.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
+```
+
+This script runs Chain-of-Thought (CoT) reasoning on a subset of GSM8K. You can swap models as needed.
+
+
+To validate FAISS-based memory retrieval, use the following script:
+
+```bash
+python run_baseline_faiss.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
+```
+
+This script:
+- Retrieves the most relevant student profile using FAISS
+- Generates explanations based on the retrieved profile
+- Evaluates results across different temperatures
+
+Example result format:
+```json
+{
+  "index": 5,
+  "temperature": 0.6,
+  "question": "If a train travels 60 mph for 3 hours, how far does it go?",
+  "gold_solution": "180 miles.",
+  "retrieved_profile": "5th grade",
+  "generated_text": "The train goes 180 miles because distance = speed × time.",
+  "output_tokens": 42,
+  "perplexity": 12.3,
+  "semantic_similarity": 0.85
+}
 ```
 
 
-### 3Load and Verify Model
-Download and load the Qwen model for Chain-of-Thought reasoning.
-
-
-Ensure the model and tokenizer are correctly loaded from Hugging Face.
-
-```python
-python verify-model.py
+### 2. Validate Outputs
+Results are stored in:
 ```
----
-
-## Running Experiments
-
-Run Baseline Chain-of-Thought (CoT) Evaluation: 
-
-```python
-python cot/run_baseline_cot.py --subset_size 50
+data/qwen/results_temp_<temperature>_<timestamp>.json
 ```
-
-To evaluate standard CoT reasoning on the GSM8K dataset.
-
-### Run Memory-Augmented CoT (mCoT) Evaluation
-To evaluate memory-aware reasoning. This version retrieves past responses to guide new reasoning.
-
-```python
-python cot/run_memory_cot.py --subset_size 50
+To inspect:
+```bash
+cat data/qwen/results_temp_0.6_<timestamp>.json | jq .
 ```
----
 
 ## Reinforcement Learning with GRPO
-### Train a GRPO Model with Memory-Augmented Reasoning
-Train a model using GRPO with memory augmentation. This optimizes reasoning based on user-specific preferences and past interactions.
 
-```python
+### 1. Train GRPO with Memory-Augmented Reasoning
+Train a model using GRPO to optimize reasoning paths based on memory retrieval.
+```bash
 python rl/train_rl_memory.py
 ```
 
-### Evaluate GRPO-Trained Model
-To compare pre-trained vs. GRPO-optimized reasoning. This measures accuracy, token efficiency, and personalization fidelity.
-
-```python
+### 2. Evaluate GRPO-Trained Model
+Compare pre-trained vs. GRPO-optimized reasoning:
+```bash
 python evaluate_rl.py
 ```
 
----
+### 3. Run Textbook-Based Evaluation
+To analyze how GRPO adapts reasoning across structured learning tasks:
+```bash
+python evaluate_textbook_rl.py
+```
+This allows step-by-step reinforcement learning through textbook chapters.
 
-### Run Detailed Comparison Baseline CoT vs mCoT
-To compare baseline CoT vs. memory-augmented CoT (mCoT). This logs results and highlights improvements from memory-guided reasoning trajectories.
 
-```python
-python evaluate_cot_vs_mcot.py
-  ```
 
----
 
-## Running Unit Tests
-Before deploying, ensure all tests pass. This runs unit and integration tests for FAISS retrieval, mCoT, and GRPO conditioned with memory (IPO)
 
-```python
-pytest tests/
-  ```

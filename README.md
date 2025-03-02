@@ -1,15 +1,14 @@
 ## Inference Preference Optimization (IPO): Augmenting GRPO with Memory
 
 ## Overview
-Inference Preference Optimization (IPO) enhances reasoning in LLMs by integrating memory retrieval into Group Relative Policy Optimization (GRPO), enabling models to adapt responses dynamically based on a user's prior learning.
+Inference Preference Optimization (IPO) enhances reasoning in LLMs by integrating memory retrieval into Group Relative Policy Optimization (GRPO). In doing this, we can measure how models adapt responses based on user-specific context, preference, and learning trajectory across interactions.
 
-This repository first evaluates memory-conditioned Chain-of-Thought (mCoT) reasoning in LLMs on the GSM8K dataset using memory retrieval with FAISS. mCoT serves as a critical validation step for IPO by demonstrating how consolidating prior interactions and retrieving relevant user-specific memory can personalize model reasoning. Once validated, GRPO further optimizes inference paths by conditioning reinforcement learning on retrieved memory, forming the basis of IPO.
+The goal of this repository is to first evaluate memory-conditioned Chain-of-Thought (mCoT) reasoning in LLMs on the GSM8K dataset. To validate this approach, we retrieve sample user profiles with FAISS. Once validated, we condition GRPO with user memory, extending preference optimization to user-specific reasoning trajectories. 
 
 ### Key Features
-- **FAISS-based retrieval** to match questions with relevant student profiles
-- **Memory-conditioned CoT (mCoT)** for dynamically refined responses, validating memory retrieval effectiveness
-- **Inference Preference Optimization (IPO):** GRPO conditioned with user memory to personalize reasoning sequences
-- **Textbook-based evaluation** for GRPO, tracking reasoning adaptation based on retrieved user progress
+- FAISS-based retrieval to match questions with relevant student profiles
+- Memory-conditioned CoT (mCoT) for dynamically refined responses, validating memory retrieval effectiveness
+- Inference Preference Optimization (IPO): GRPO conditioned with user memory to personalize reasoning sequences
 
 ## Installation & Setup
 
@@ -62,7 +61,7 @@ nvidia-smi
 
 ## Usage
 
-### 1. Run Memory-Conditioned CoT Evaluation
+### Run Memory-Conditioned CoT Evaluation
 ```bash
 cd cot 
 python run_baseline_cot.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
@@ -98,7 +97,7 @@ Example result format:
 ```
 
 
-### 2. Validate Outputs
+### Validate Outputs
 Results are stored in:
 ```
 data/qwen/results_temp_<temperature>_<timestamp>.json
@@ -110,16 +109,35 @@ cat data/qwen/results_temp_0.6_<timestamp>.json | jq .
 
 ## Reinforcement Learning with GRPO
 
-### 1. Train GRPO with Memory-Augmented Reasoning
+### Train GRPO with Memory-Augmented Reasoning
 Train a model using GRPO to optimize reasoning paths based on memory retrieval.
 ```bash
 python rl/train_rl_memory.py
 ```
 
-### 2. Evaluate GRPO-Trained Model
-Compare pre-trained vs. GRPO-optimized reasoning:
-```bash
+
+### Evaluate GRPO-Trained Model
+To compare pre-trained vs. GRPO-optimized reasoning. This measures accuracy, token efficiency, and personalization fidelity.
+
+```python
 python evaluate_rl.py
 ```
 
+---
+
+### Run Detailed Comparison Baseline CoT vs mCoT
+To compare baseline CoT vs. memory-augmented CoT (mCoT). This logs results and highlights improvements from memory-guided reasoning trajectories.
+
+```python
+python evaluate_cot_vs_mcot.py
+  ```
+
+---
+
+## Running Unit Tests
+Before deploying, ensure all tests pass. This runs unit and integration tests for FAISS retrieval, mCoT, and GRPO conditioned with memory (IPO)
+
+```python
+pytest tests/
+  ```
 

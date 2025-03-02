@@ -3,7 +3,7 @@
 # derek.rosenzweig1@gmail.com
 
 """
-run_baseline_cot_coherence.py
+run_baseline_s3.py
 
 Evaluates Qwen on GSM8K dataset across temperature settings.
 Collects accuracy, token usage, coherence (perplexity, semantic similarity, entity overlap).

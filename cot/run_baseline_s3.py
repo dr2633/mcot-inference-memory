@@ -5,9 +5,9 @@
 """
 run_baseline_cot_coherence.py
 
-Evaluate on GSM8K dataset across temperature settings.
+Evaluates Qwen on GSM8K dataset across temperature settings.
 Collects accuracy, token usage, coherence (perplexity, semantic similarity, entity overlap).
-Generates violin and scatter plots for coherence benchmarking.
+Saves results both locally and to an S3 bucket.
 """
 
 import argparse
@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import spacy
+import boto3  # AWS S3
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 from datasets import load_dataset
@@ -29,6 +30,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 # Load models for evaluation
 nlp = spacy.load("en_core_web_sm")
 similarity_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# AWS S3 Configuration
+S3_BUCKET_NAME = "your-s3-bucket-name"
+s3_client = boto3.client("s3")
 
 # ----------------------------------------------
 # Argument Parsing
@@ -39,7 +44,7 @@ def parse_args():
     parser.add_argument("--subset_size", type=int, default=50, help="Number of examples from GSM8K to evaluate.")
     parser.add_argument("--max_new_tokens", type=int, default=256, help="Max tokens to generate.")
     parser.add_argument("--device", type=str, default="cuda", help="Device to run inference on (cuda or cpu).")
-    parser.add_argument("--output_dir", type=str, default=os.path.join(os.getcwd(), "data/qwen"), help="Output directory.")
+    parser.add_argument("--output_dir", type=str, default="/home/ubuntu/qwen_results", help="Local output directory.")
     return parser.parse_args()
 
 # ----------------------------------------------
@@ -66,6 +71,11 @@ def entity_overlap(question, generated_text):
     gen_entities = {ent.text for ent in nlp(generated_text).ents}
     return len(q_entities & gen_entities) / max(1, len(q_entities))
 
+def save_to_s3(local_file_path, s3_key):
+    """Uploads a file to S3."""
+    s3_client.upload_file(local_file_path, S3_BUCKET_NAME, s3_key)
+    print(f"✅ Uploaded {local_file_path} to S3 as {s3_key}")
+
 # ----------------------------------------------
 # Main Experiment
 # ----------------------------------------------
@@ -91,7 +101,8 @@ def main():
         output_tokens_list, perplexity_list, similarity_list, entity_overlap_list = [], [], [], []
 
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        json_filename = os.path.join(args.output_dir, f"results_temp_{temp}_{timestamp}.json")
+        json_filename = f"results_temp_{temp}_{timestamp}.json"
+        local_json_path = os.path.join(args.output_dir, json_filename)
 
         for idx, sample in enumerate(ds):
             question, gold_solution = sample["question"], sample["answer"].strip().lower()
@@ -129,34 +140,15 @@ def main():
             "entity_overlap_list": entity_overlap_list
         }
 
-        with open(json_filename, "w", encoding="utf-8") as f:
+        # Save locally
+        with open(local_json_path, "w", encoding="utf-8") as f:
             json.dump({"temperature": temp, "results": results}, f, indent=2)
+        print(f"Saved {local_json_path} locally.")
 
-        print(f"Results saved to {json_filename}")
+        # Upload to S3
+        save_to_s3(local_json_path, f"qwen_results/{json_filename}")
 
-    # Prepare Data for Visualization
-    plot_data = []
-    for temp, values in token_stats.items():
-        for i in range(len(values["output_tokens_list"])):
-            plot_data.append({"Temperature": temp, "Perplexity": values["perplexity_list"][i], "Semantic Similarity": values["similarity_list"][i]})
-
-    df = pd.DataFrame(plot_data)
-    sns.set(style="whitegrid")
-
-    # Violin Plot: Perplexity Across Temperatures
-    plt.figure(figsize=(8, 5))
-    sns.violinplot(x="Temperature", y="Perplexity", data=df, palette="rocket")
-    plt.title("Perplexity Across Temperatures (Lower = More Fluent)")
-    plt.savefig(os.path.join(args.output_dir, f"perplexity_violin_{timestamp}.png"))
-    plt.show()
-
-    # Scatter Plot: Semantic Similarity Across Temperatures
-    plt.figure(figsize=(8, 5))
-    scatter_df = df.groupby("Temperature")["Semantic Similarity"].mean().reset_index()
-    sns.scatterplot(x="Temperature", y="Semantic Similarity", data=scatter_df, palette="rocket", hue="Temperature", size="Semantic Similarity", legend=False)
-    plt.title("Semantic Similarity vs. Temperature (Higher = More Coherent)")
-    plt.savefig(os.path.join(args.output_dir, f"similarity_scatter_{timestamp}.png"))
-    plt.show()
+    print("Experiment complete. Results saved locally and in S3.")
 
 if __name__ == "__main__":
     main()

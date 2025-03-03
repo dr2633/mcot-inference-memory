@@ -20,14 +20,12 @@ import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import spacy
-from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # Load models for evaluation
-nlp = spacy.load("en_core_web_sm")
+
 similarity_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # ----------------------------------------------
@@ -59,12 +57,6 @@ def semantic_similarity(generated_text, gold_text):
     gen_embedding = similarity_model.encode([generated_text])
     gold_embedding = similarity_model.encode([gold_text])
     return cosine_similarity(gen_embedding, gold_embedding)[0][0]
-
-def entity_overlap(question, generated_text):
-    """Measures overlap of named entities between the question and generated text."""
-    q_entities = {ent.text for ent in nlp(question).ents}
-    gen_entities = {ent.text for ent in nlp(generated_text).ents}
-    return len(q_entities & gen_entities) / max(1, len(q_entities))
 
 # ----------------------------------------------
 # Main Experiment
@@ -105,19 +97,16 @@ def main():
             # Compute evaluation metrics
             perplexity = calculate_perplexity(generated_text, model, tokenizer, args.device)
             similarity = semantic_similarity(generated_text, gold_solution)
-            entity_score = entity_overlap(question, generated_text)
 
             # Store results
             output_tokens_list.append(output_tokens)
             perplexity_list.append(perplexity)
             similarity_list.append(similarity)
-            entity_overlap_list.append(entity_score)
 
             results.append({
                 "index": idx, "temperature": temp, "question": question,
                 "gold_solution": gold_solution, "generated_text": generated_text,
                 "output_tokens": output_tokens, "perplexity": perplexity,
-                "semantic_similarity": similarity, "entity_overlap": entity_score
             })
 
         # Store stats

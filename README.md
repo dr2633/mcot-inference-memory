@@ -1,6 +1,7 @@
 ## Inference Preference Optimization (IPO): Augmenting GRPO with Memory
+***
 
-## Overview
+### Overview
 Inference Preference Optimization (IPO) enhances reasoning in LLMs by integrating memory retrieval into Group Relative Policy Optimization (GRPO). In doing this, we can measure how models adapt responses based on user-specific context, preference, and learning trajectory across interactions.
 
 The goal of this repository is to first evaluate memory-conditioned Chain-of-Thought (mCoT) reasoning in LLMs on the GSM8K dataset. To validate this approach, we retrieve sample user profiles with FAISS. Once validated, we condition GRPO with user memory, extending preference optimization to user-specific reasoning trajectories. 
@@ -18,13 +19,12 @@ pip install -r requirements.txt
 ```
 Or manually install:
 ```bash
-pip install torch transformers datasets faiss-cpu sentence-transformers matplotlib seaborn pandas spacy
-python -m spacy download en_core_web_sm
+pip install torch transformers datasets faiss-cpu sentence-transformers matplotlib seaborn pandas spacy einops transformers_stream_generator trl tiktoken transformers_stream_generator sentence_transformers tf-keras datasets
 ```
 
 ### 2. Clone Repository
 ```bash
-git clone https://github.com/your-repo/mCoT-GRPO-IPO.git
+git clone https://github.com/dr2633/mCoT-GRPO-IPO.git
 cd mCoT-GRPO-IPO
 ```
 
@@ -64,6 +64,8 @@ nvidia-smi
 ### Run Memory-Conditioned CoT Evaluation
 ```bash
 cd cot 
+python verify-model.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
+
 python run_baseline_cot.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
 ```
 

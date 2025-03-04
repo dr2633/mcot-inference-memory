@@ -38,6 +38,7 @@ def parse_args():
     parser.add_argument("--max_new_tokens", type=int, default=256, help="Max tokens to generate.")
     parser.add_argument("--device", type=str, default="cuda", help="Device to run inference on (cuda or cpu).")
     parser.add_argument("--output_dir", type=str, default=os.path.join(os.getcwd(), "data/qwen"), help="Output directory.")
+    parser.add_argument("--disable_flash_attn", action="store_true", help="Disable FlashAttention if supported.")
     return parser.parse_args()
 
 # ----------------------------------------------

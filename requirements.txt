@@ -19,8 +19,17 @@ faiss-gpu>=1.7.4; sys_platform == "linux"
 trl>=0.7.9
 bitsandbytes>=0.39.0  # Required for quantized training
 
+# Semantic Similarity and Text Processing
+sentence-transformers>=2.3.0  # For semantic similarity calculation
+scikit-learn>=1.2.0  # For cosine_similarity function
+spacy>=3.5.0  # For advanced text processing and entity extraction
+
+# Visualization and Analysis
+matplotlib>=3.7.0  # For visualizing evaluation results
+seaborn>=0.12.0  # For enhanced statistical visualizations
+pandas>=2.0.0  # For data manipulation and analysis
+
 # Miscellaneous Utilities
 numpy>=1.23.0
 scipy>=1.10.0
 jsonlines>=3.1.0  # For structured log storage
-matplotlib>=3.7.0  # For visualizing evaluation results

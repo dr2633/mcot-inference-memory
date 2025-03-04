@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ```
 Or manually install:
 ```bash
-pip install torch transformers datasets faiss-cpu sentence-transformers matplotlib seaborn pandas spacy einops transformers_stream_generator trl tiktoken transformers_stream_generator sentence_transformers tf-keras datasets
+pip install torch==2.1.0+cu118 -f https://download.pytorch.org/whl/torch_stable.html transformers datasets faiss-cpu sentence-transformers matplotlib seaborn pandas spacy einops transformers_stream_generator trl tiktoken tf-keras numpy==1.24.4 flash-attn
 ```
 
 ### 2. Clone Repository
@@ -66,7 +66,7 @@ nvidia-smi
 cd cot 
 python verify-model.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
 
-python run_baseline_cot.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
+python run_baseline_cot_1.py --model_name Qwen/Qwen-7B --subset_size 50 --max_new_tokens 256 --device cuda
 ```
 
 This script runs Chain-of-Thought (CoT) reasoning on a subset of GSM8K. You can swap models as needed.

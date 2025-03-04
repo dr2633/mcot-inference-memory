@@ -13,7 +13,7 @@ transformers_stream_generator==0.0.5  # Required for Qwen inference
 
 # Memory Retrieval (FAISS for run_memory_cot.py)
 faiss-cpu>=1.7.4; sys_platform != "linux"
-faiss-gpu>=1.7.4; sys_platform == "linux"
+faiss-gpu>=1.7.1; sys_platform == "linux"
 
 # Reinforcement Learning (For train_rl_memory.py)
 trl>=0.7.9

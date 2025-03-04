@@ -1,7 +1,7 @@
 import unittest
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from cot.run_baseline_cot import generate_cot_answer
+from documentation.run_baseline_cot_1 import generate_cot_answer
 
 # ----------------------------------------------
 # Configuration

@@ -16,7 +16,7 @@ import os
 import faiss
 import numpy as np
 import pickle
-from typing import List, Dict, Any, Union
+from typing import List, Dict, Any
 
 try:
     from sentence_transformers import SentenceTransformer

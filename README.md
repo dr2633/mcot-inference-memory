@@ -11,6 +11,9 @@ The goal of this repository is to first evaluate memory-conditioned Chain-of-Tho
 - Memory-conditioned CoT (mCoT) for dynamically refined responses, validating memory retrieval effectiveness
 - Inference Preference Optimization (IPO): GRPO conditioned with user memory to personalize reasoning sequences
 
+<img src="assets/grpo.jpg" width="300">
+
+
 ## Installation & Setup
 
 ### 1. Install Dependencies

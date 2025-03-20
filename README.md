@@ -4,15 +4,15 @@
 ### Overview
 Inference Preference Optimization (IPO) enhances reasoning in LLMs by integrating memory retrieval into Group Relative Policy Optimization (GRPO). In doing this, we can measure how models adapt responses based on user-specific context, preference, and learning trajectory across interactions.
 
+
+<img src="assets/grpo.jpg" width="300">
+
 The goal of this repository is to first evaluate memory-conditioned Chain-of-Thought (mCoT) reasoning in LLMs on the GSM8K dataset. To validate this approach, we retrieve sample user profiles with FAISS. Once validated, we condition GRPO with user memory, extending preference optimization to user-specific reasoning trajectories. 
 
 ### Key Features
 - FAISS-based retrieval to match questions with relevant student profiles
 - Memory-conditioned CoT (mCoT) for dynamically refined responses, validating memory retrieval effectiveness
 - Inference Preference Optimization (IPO): GRPO conditioned with user memory to personalize reasoning sequences
-
-<img src="assets/grpo.jpg" width="300">
-
 
 ## Installation & Setup
 

@@ -24,39 +24,29 @@ model.to(DEVICE)
 # Unit Tests
 # ----------------------------------------------
 class TestChainOfThought(unittest.TestCase):
-    """Test suite for Chain of Thought (CoT) reasoning functionality.
-    Tests output format, answer extraction, and response length limits."""
 
     def setUp(self):
-        """Initialize test data with arithmetic and word problems.
-        Sets up questions and their expected numerical answers."""
         self.questions = [
             "What is 12 multiplied by 8?",
             "If a train travels 60 miles per hour, how long will it take to travel 180 miles?"
         ]
         self.expected_answers = [
-            "96",  # Expected answer for 12 * 8
-            "3 hours"  # Expected answer for 180 / 60
+            "96",  
+            "3 hours"  
         ]
 
     def test_cot_output(self):
-        """Verify that generated responses include step-by-step reasoning.
-        Checks for 'Let's think step by step' phrase in output."""
         for question in self.questions:
             output = generate_cot_answer(question)
             self.assertIn("Let's think step by step", output, "CoT reasoning missing in output.")
 
     def test_cot_answer_extraction(self):
-        """Verify that final answers can be extracted from responses.
-        Extracts answer after 'Answer:' delimiter and checks for non-empty result."""
         for idx, question in enumerate(self.questions):
             output = generate_cot_answer(question)
             answer = output.split("Answer:")[-1].strip() if "Answer:" in output else output.strip()
             self.assertNotEqual(answer, "", "Generated answer is empty.")
 
     def test_token_length(self):
-        """Verify response length stays within token limit.
-        Ensures generated text doesn't exceed 256 tokens."""
         for question in self.questions:
             output = generate_cot_answer(question, max_new_tokens=256)
             token_count = len(tokenizer(output)["input_ids"])

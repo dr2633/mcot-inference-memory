@@ -49,7 +49,7 @@ class TestChainOfThought(unittest.TestCase):
         for question in self.questions:
             output = generate_cot_answer(question, max_new_tokens=256)
             token_count = len(tokenizer(output)["input_ids"])
-            self.assertLessEqual(token_count, 256, "Generated output exceeds token limit.")
+            self.assertLessEqual(token_count, 256, "Generated output exceeds token limit. Current limit is 256")
 
 
 if __name__ == "__main__":

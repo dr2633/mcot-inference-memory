@@ -17,8 +17,9 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, trust_remote_code=True)
 model.to(DEVICE)
 
-retriever = FAISSRetriever(index_path="faiss_index")
-retriever.load_index()
+# Initialize FAISS retriever with test index path
+retriever = FAISSRetriever(index_path="test_faiss_index")  # Use test-specific index
+retriever.load_index()  
 
 
 # ----------------------------------------------

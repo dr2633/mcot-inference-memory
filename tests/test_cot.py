@@ -23,6 +23,7 @@ model.to(DEVICE)
 # ----------------------------------------------
 # Unit Tests
 # ----------------------------------------------
+
 class TestChainOfThought(unittest.TestCase):
 
     def setUp(self):
